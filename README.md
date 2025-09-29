@@ -9,3 +9,35 @@ Une application web de covoiturage transparente sur l'empreinte environnementale
 
 <h2>Effets de la numérisation</h2>
 
+
+<h2>Comparaison de l'empreinte environnementale de différents services de coivoiturage</h2>
+Nous avons utilisé l'application EcoIndexApp pour calculer les empreintes des différents services. Nous avons sélectionné 3 services de coivoiturage pour les comparer : 
+<ul>
+  <li>BlaBlaCar</li>
+  <li>Europe Carpooling</li>
+  <li>MobiCoop</li>
+</ul>
+
+Nous avons créé un scénario d'utilisation sur les site: D'abord charger la page d'accueil, puis chercher un trajet Paris-Lyon pour le jour-même. Voici les résultats que nous avons obtenus pour chaque site: 
+
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Score</th>
+  </tr>
+  <tr>
+    <td>BlaBlacar</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Europe Carpooling</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>MobiCoop</td>
+    <td></td>
+  </tr>
+</table>
+
+
+
