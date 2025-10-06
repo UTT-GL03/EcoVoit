@@ -24,7 +24,6 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
 <p>Mais il faut rester vigilant :</p>
 <ul>
   <li>Trop de petits trajets ou de détours peuvent augmenter la pollution.</li>
-  <li>Proposer des trajets pour des personnes déjà transportées autrement peut réduire le gain écologique.</li>
   <li>L’impact énergétique des serveurs et de l’application, même faible, doit être pris en compte.</li>
 </ul>
 <p>Le service EcoVoit doit donc réduire au maximum les émissions de CO₂ tout en étant utilisé de manière responsable et efficace.</p>
