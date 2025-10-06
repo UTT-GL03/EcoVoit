@@ -58,3 +58,8 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
 </table>
 
 <p>On voit que les 3 services ont un score similaire, assez bas (en dessous de la moyenne).</p>
+
+<h2>Choix du modèle économique</h2>
+
+<p>Notre application sera financé grâce aux commissions prises sur chaque trajet réservé. Nous incluerons également des publicités. Pour finir, nous aimerions toucher des financements publics (Etat, collectivités territoriales), en promouvant l'aspect écoresponsable et la prise en compte des enjeux environnementaux d'EcoVoit.</p>
+
