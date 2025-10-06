@@ -2,6 +2,8 @@
 Une application web de covoiturage transparente sur l'empreinte environnementale des trajets et sur les alternatives existantes
 
 <h2>Choix du Sujet</h2> 
+Le transport est une grande source de pollution. En France, il produit environ 30 % des émissions de CO₂ (source : Ministère de la Transition écologique). La voiture individuelle est le plus gros pollueur, surtout pour les trajets domicile-travail et les déplacements réguliers. Beaucoup de ces trajets se font avec une seule personne, ce qui gaspille de l’énergie et pollue inutilement.
+Le covoiturage est une solution intéressante : il permet de mettre moins de voitures sur les routes, de réduire les émissions par personne et de favoriser des transports plus écologiques.
 
 
 <h2>Utilité sociale</h2>
