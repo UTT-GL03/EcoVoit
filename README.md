@@ -7,9 +7,23 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
 
 
 <h2>Utilité sociale</h2>
+Le covoiturage n’a pas seulement un intérêt écologique, il est aussi utile socialement et économiquement :
+⦁	Il favorise le partage et la convivialité, en permettant aux gens de se rencontrer.
+⦁	Il diminue le coût des trajets pour les automobilistes, car les frais de carburant et de péage sont partagés.
+⦁	Il aide à réduire les embouteillages et la saturation des routes.
+Ainsi, le covoiturage est bénéfique pour la planète et pour la société.
+
 
 
 <h2>Effets de la numérisation</h2>
+Les applications mobiles et web ont rendu le covoiturage plus facile et plus pratique. Les utilisateurs peuvent voir les trajets disponibles, réserver ou proposer un trajet en quelques clics et organiser des itinéraires pour éviter de parcourir trop de kilomètres.
+Mais il faut rester vigilant :
+⦁	Trop de petits trajets ou de détours peuvent augmenter la pollution.
+⦁	Proposer des trajets pour des personnes déjà transportées autrement peut réduire le gain écologique.
+⦁	L’impact énergétique des serveurs et de l’application, même faible, doit être pris en compte.
+Le service Écovoit doit donc réduire au maximum les émissions de CO₂ tout en étant utilisé de manière responsable et efficace.
+Si tu veux, je peux aussi faire une version encore plus courte, adaptée à un exposé ou un résumé rapide. Veux‑tu que je fasse ça ?
+
 
 
 <h2>Comparaison de l'empreinte environnementale de différents services de coivoiturage</h2>
