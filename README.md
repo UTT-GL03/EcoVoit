@@ -63,3 +63,14 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
 
 <p>Notre application sera financé grâce aux commissions prises sur chaque trajet réservé. Nous incluerons également des publicités. Pour finir, nous aimerions toucher des financements publics (Etat, collectivités territoriales), en promouvant l'aspect écoresponsable et la prise en compte des enjeux environnementaux d'EcoVoit.</p>
 
+<h2>Structure de l'application web</h2>
+
+<p>Il y aura 5 types d'objets métier dans notre application web : </p>
+<ul>
+  <li>"/search?dep={ville}&arr={ville}&date={date}" : la page d'accueil permettant de chercher un trajet avec 3 paramètres à remplir: Ville de départ, ville d'arrivée, date. Par défaut les paramètres seront vides. après les avoir rempli, les trajets correspondants s'afficheront sous forme de liste</li>
+  <li>"/trip?trip_id={id}" : La page s'affichant après avoir cliqué sur un trajet en particulier. Elle affichera les détails du trjets: Conducteur, heure de départ, lieu de départ exact, heure d'arrivée, véhicule.</li>
+  <li>"/booking?trip_id={id}" : La page s'affichant après avoir cliqué sur le bouton permettant de réserver un trajet</li>
+  <li>"/user?user_id={id}" : La page affichant le compte de l'utilisateur, avec ses informations personnelles : Nom, prénom, numéro de téléphone, adresse mail, véhicule.</li>
+</ul>
+
+
