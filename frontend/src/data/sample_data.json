@@ -1,0 +1,90 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "name": "Jean",
+      "surname": "Dupont",
+      "email": "jean.dupont@email.com",
+      "phone": "0612345678",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "totalTrips": 42,
+      "rating": 4.8
+    },
+    {
+      "id": "user-2",
+      "name": "Marie",
+      "surname": "Lambert",
+      "email": "marie.lambert@email.com",
+      "phone": "0623456789",
+      "avatar": "https://i.pravatar.cc/150?img=45",
+      "totalTrips": 87,
+      "rating": 4.9
+    },
+    {
+      "id": "user-3",
+      "name": "Pierre",
+      "surname": "Martin",
+      "email": "pierre.martin@email.com",
+      "phone": "0634567890",
+      "avatar": "https://i.pravatar.cc/150?img=33",
+      "totalTrips": 35,
+      "rating": 4.7
+    }
+  ],
+  "trips": [
+    {
+      "id": "trip-1",
+      "conductorId": "user-1",
+      "villeDepart": "Paris",
+      "villeArrivee": "Lyon",
+      "price": 25,
+      "nbPlacesVides": 3,
+      "meetingPoint": "Gare de Lyon, Paris",
+      "carModel": "Renault Megane",
+      "status": "available",
+      "departureTime": "2025-10-15T14:00:00"
+    },
+    {
+      "id": "trip-2",
+      "conductorId": "user-2",
+      "villeDepart": "Paris",
+      "villeArrivee": "Lyon",
+      "price": 22,
+      "nbPlacesVides": 2,
+      "meetingPoint": "Porte Maillot, Paris",
+      "carModel": "Peugeot 308",
+      "status": "available",
+      "departureTime": "2025-10-15T18:30:00"
+    },
+    {
+      "id": "trip-3",
+      "conductorId": "user-3",
+      "villeDepart": "Paris",
+      "villeArrivee": "Marseille",
+      "price": 35,
+      "nbPlacesVides": 4,
+      "meetingPoint": "Gare Montparnasse, Paris",
+      "carModel": "Citroen C4",
+      "status": "available",
+      "departureTime": "2025-10-16T09:00:00"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "booking-1",
+      "tripId": "trip-1",
+      "passengerId": "user-2",
+      "price": 25,
+      "nbPlacesLouees": 1,
+      "dateBooking": "2025-10-10T10:30:00"
+    },
+    {
+      "id": "booking-2",
+      "tripId": "trip-2",
+      "passengerId": "user-3",
+      "price": 44,
+      "nbPlacesLouees": 2,
+      "dateBooking": "2025-10-11T14:20:00"
+    }
+  ]
+}

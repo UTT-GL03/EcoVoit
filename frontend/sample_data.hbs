@@ -1,0 +1,70 @@
+{
+  "users": [
+    {{#repeat 10}}
+    {
+      "id": "{{guid}}",
+      "firstName": "{{firstName}}",
+      "lastName": "{{lastName}}",
+      "email": "{{email}}",
+      "phone": "{{phone}}",
+      "avatar": "https://i.pravatar.cc/150?img={{int 1 70}}",
+      "rating": {{float 3.5 5.0}},
+      "totalTrips": {{int 1 50}},
+      "verified": {{boolean}},
+      "memberSince": "{{date '2020-01-01' '2024-01-01'}}"
+    }{{#unless @last}},{{/unless}}
+    {{/repeat}}
+  ],
+  "trips": [
+    {{#repeat 20}}
+    {
+      "id": "{{guid}}",
+      "driverId": "{{guid}}",
+      "origin": {
+        "city": "{{city}}",
+        "address": "{{street}}",
+        "coordinates": {
+          "lat": {{float 48.5 49.5}},
+          "lng": {{float 2.0 3.0}}
+        }
+      },
+      "destination": {
+        "city": "{{city}}",
+        "address": "{{street}}",
+        "coordinates": {
+          "lat": {{float 43.0 44.0}},
+          "lng": {{float 5.0 6.0}}
+        }
+      },
+      "departureTime": "{{date '2025-10-14' '2025-11-30'}}",
+      "availableSeats": {{int 1 4}},
+      "pricePerSeat": {{float 10 50}},
+      "carModel": "{{company}}",
+      "preferences": {
+        "smokingAllowed": {{boolean}},
+        "petsAllowed": {{boolean}},
+        "musicAllowed": {{boolean}},
+        "chattiness": "{{random 'quiet' 'moderate' 'chatty'}}"
+      },
+      "status": "{{random 'available' 'full' 'cancelled' 'completed'}}",
+      "createdAt": "{{date '2025-10-01' '2025-10-13'}}",
+      "description": "Trajet confortable"
+    }{{#unless @last}},{{/unless}}
+    {{/repeat}}
+  ],
+  "bookings": [
+    {{#repeat 15}}
+    {
+      "id": "{{guid}}",
+      "tripId": "{{guid}}",
+      "passengerId": "{{guid}}",
+      "seatsBooked": {{int 1 3}},
+      "totalPrice": {{float 10 100}},
+      "status": "{{random 'pending' 'confirmed' 'cancelled' 'completed'}}",
+      "bookedAt": "{{date '2025-10-01' '2025-10-13'}}",
+      "pickupLocation": "{{street}}, {{city}}",
+      "dropoffLocation": "{{street}}, {{city}}"
+    }{{#unless @last}},{{/unless}}
+    {{/repeat}}
+  ]
+}
