@@ -1,8 +1,23 @@
 import "./App.css";
 import TripCard from "./components/trip/TripCard";
 import sampleData from "./data/sample_data.json";
+import { useState } from 'react';
+import TripDetailModal from './components/trip/TripDetailModal';
 
 function App() {
+
+    const [selectedTrip, setSelectedTrip] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = (trip) => {
+        setSelectedTrip(trip);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
   const availableTrips = sampleData.trips
     .filter((trip) => trip.status === "available")
     .slice(0, 10);
@@ -12,24 +27,8 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        padding: "2rem",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        background: "#f5f7fa",
-        minHeight: "100vh",
-      }}
-    >
-      <header
-        style={{
-          background: "white",
-          padding: "1.5rem 2rem",
-          borderRadius: "12px",
-          marginBottom: "2rem",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
-        }}
-      >
+    <div className={"main-container"}>
+      <header className={"header"}     >
         <h1
           style={{
             fontSize: "2rem",
@@ -38,7 +37,7 @@ function App() {
             margin: 0,
           }}
         >
-          🚗 EcoRide
+          🚗 EcoVoit
         </h1>
         <p
           style={{
@@ -50,18 +49,11 @@ function App() {
         </p>
       </header>
 
-      <div
-        style={{
-          background: "white",
-          padding: "1.5rem",
-          borderRadius: "12px",
-          marginBottom: "2rem",
-          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
-        }}
-      >
+      <div className={"card"} >
         <h2
           style={{
-            fontSize: "1.25rem",
+              color: "#10b981",
+              fontSize: "1.25rem",
             marginBottom: "1rem",
           }}
         >
@@ -123,6 +115,7 @@ function App() {
             fontSize: "1.25rem",
             fontWeight: "600",
             marginBottom: "1rem",
+            color:  "#10b981",
           }}
         >
           Trajets disponibles
@@ -140,7 +133,8 @@ function App() {
               key={trip.id}
               trip={trip}
               user={getUserForTrip(trip.conductorId)}
-            />
+              onViewDetails={() => openModal(trip)}
+              />
           ))}
         </div>
 
@@ -158,6 +152,15 @@ function App() {
           </div>
         )}
       </div>
+
+        {isModalOpen && selectedTrip && (
+            <TripDetailModal
+                trip={selectedTrip}
+                user={getUserForTrip(selectedTrip.conductorId)}
+                onClose={closeModal}
+            />
+        )}
+
     </div>
   );
 }

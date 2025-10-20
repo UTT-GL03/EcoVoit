@@ -1,68 +1,122 @@
 :root {
+  --primary-color: #10b981;
+  --text-color: #213547;
+  --text-color-light: rgba(255, 255, 255, 0.87);
+  --bg-color: #ffffff;
+  --bg-color-dark: #242424;
+  --card-bg: #f5f7fa;
+  --border-radius: 12px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Réinitialisation globale */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh; /* Utilise toute la hauteur de la fenêtre */
+  overflow-x: hidden;
+}
+
+/* Thème par défaut (clair) */
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  min-width: 100%;
+  display: block; /* Remplace le flex pour éviter le centrage */
+}
+
+/* Thème sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: var(--text-color-light);
+    --bg-color: var(--bg-color-dark);
+    --card-bg: #1e1e1e;
+  }
+}
+
+/* Styles pour les liens */
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--primary-color);
+  text-decoration: none;
 }
 a:hover {
-  color: #535bf2;
+  text-decoration: underline;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
+/* Styles pour les boutons */
 button {
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+button.primary {
+  background-color: var(--primary-color);
+  color: white;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button.primary:hover {
+  background-color: #0d9468;
+}
+button.secondary {
+  background-color: #f3f4f6;
+  color: var(--text-color);
+  border: 1px solid #d1d5db;
+}
+button.secondary:hover {
+  background-color: #e5e7eb;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Styles pour les cartes (TripCard, modales, etc.) */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Styles pour le conteneur principal */
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Styles pour l'en-tête */
+.header {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  box-shadow: var(--box-shadow);
+  color: var(--text-color);
+}
+
+/* Responsive : assure que tout s'affiche bien sur mobile */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 0.5rem;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+  .card {
+    padding: 1rem;
   }
 }
