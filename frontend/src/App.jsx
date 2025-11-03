@@ -1,14 +1,44 @@
 import "./App.css";
 import TripCard from "./components/trip/TripCard";
-import sampleData from "./data/sample_data.json";
+import { useEffect, useState } from "react";
 
 function App() {
-  const availableTrips = sampleData.trips
+  const [data, setData] = useState({ users: [], trips: [], bookings: [] });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch("/sample_data.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        if (isMounted) {
+          setData(json);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err.message);
+          setLoading(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const availableTrips = data.trips
     .filter((trip) => trip.status === "available")
     .slice(0, 10);
 
   const getUserForTrip = (conductorId) => {
-    return sampleData.users.find((user) => user.id === conductorId);
+    return data.users.find((user) => user.id === conductorId);
   };
 
   return (
@@ -67,6 +97,12 @@ function App() {
         >
           📊 Données chargées
         </h2>
+        {loading && (
+          <div style={{ color: "#6b7280" }}>Chargement…</div>
+        )}
+        {error && (
+          <div style={{ color: "#ef4444" }}>Erreur: {error}</div>
+        )}
         <div
           style={{
             display: "grid",
@@ -78,7 +114,7 @@ function App() {
             <div
               style={{ fontSize: "2rem", fontWeight: "bold", color: "#10b981" }}
             >
-              {sampleData.users.length}
+              {data.users.length}
             </div>
             <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>
               Utilisateurs
@@ -88,7 +124,7 @@ function App() {
             <div
               style={{ fontSize: "2rem", fontWeight: "bold", color: "#10b981" }}
             >
-              {sampleData.trips.length}
+              {data.trips.length}
             </div>
             <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>
               Trajets
@@ -98,7 +134,7 @@ function App() {
             <div
               style={{ fontSize: "2rem", fontWeight: "bold", color: "#10b981" }}
             >
-              {sampleData.bookings.length}
+              {data.bookings.length}
             </div>
             <div style={{ fontSize: "0.875rem", color: "#6b7280" }}>
               Réservations
