@@ -35,30 +35,7 @@ export default function TripCard({ trip, user }) {
   };
 
   return (
-    <div
-      style={{
-        background: "white",
-        borderRadius: "12px",
-        padding: "1.5rem",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-        display: "grid",
-        gridTemplateColumns: "auto 1fr auto",
-        gap: "1.5rem",
-        alignItems: "center",
-        border: "2px solid transparent",
-        transition: "all 0.2s",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-2px)";
-        e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
-        e.currentTarget.style.borderColor = "#10b981";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
-        e.currentTarget.style.borderColor = "transparent";
-      }}
-    >
+    <div className="trip-card">
       <Avatar
         src={user?.avatar}
         firstName={user?.name}
@@ -67,33 +44,13 @@ export default function TripCard({ trip, user }) {
       />
 
       <div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            marginBottom: "0.75rem",
-          }}
-        >
-          <span style={{ fontSize: "1.125rem", fontWeight: "600" }}>
-            {trip.villeDepart}
-          </span>
+        <div className="trip-title">
+          <span>{trip.villeDepart}</span>
           <span style={{ color: "#9ca3af" }}>→</span>
-          <span style={{ fontSize: "1.125rem", fontWeight: "600" }}>
-            {trip.villeArrivee}
-          </span>
+          <span>{trip.villeArrivee}</span>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "1.5rem",
-            fontSize: "0.875rem",
-            color: "#6b7280",
-            marginBottom: "0.5rem",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className="trip-meta">
           <span>📅 {formatDate(trip.departureTime)}</span>
           <span>💺 {trip.nbPlacesVides} places</span>
           <span>🚗 {trip.carModel}</span>
@@ -102,26 +59,13 @@ export default function TripCard({ trip, user }) {
           </Badge>
         </div>
 
-        <div
-          style={{
-            fontSize: "0.75rem",
-            color: "#6b7280",
-            marginBottom: "0.5rem",
-          }}
-        >
+        <div className="meeting-point">
           📍 {trip.meetingPoint}
         </div>
 
         {user && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              fontSize: "0.875rem",
-            }}
-          >
-            <span style={{ fontWeight: "500" }}>
+          <div className="trip-meta">
+            <span>
               {user.name} {user.surname}
             </span>
             <span style={{ color: "#fbbf24" }}>
@@ -134,24 +78,11 @@ export default function TripCard({ trip, user }) {
         )}
       </div>
 
-      <div style={{ textAlign: "right" }}>
-        <div
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "700",
-            color: "#10b981",
-            marginBottom: "0.5rem",
-          }}
-        >
+      <div className="price">
+        <div className="price-value">
           {trip.price}€
         </div>
-        <div
-          style={{
-            fontSize: "0.75rem",
-            color: "#6b7280",
-            marginBottom: "0.75rem",
-          }}
-        >
+        <div className="price-note">
           par personne
         </div>
         <Button
