@@ -2,7 +2,7 @@ import Avatar from "../common/Avatar";
 import Badge from "../common/Badge";
 import Button from "../common/Button";
 
-export default function TripCard({ trip, user, onViewDetails     }) {
+export default function TripCard({ trip, user, onViewDetails }) {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("fr-FR", {
@@ -35,106 +35,50 @@ export default function TripCard({ trip, user, onViewDetails     }) {
   };
 
   return (
-      <div className={"card"}
-           style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: '1.5rem', alignItems: 'center' }}
+    <div className={"card interactive trip-card"}>
+      <Avatar
+        src={user?.avatar}
+        firstName={user?.name}
+        lastName={user?.surname}
+        size="md"
+      />
 
-          onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.15)";
-              e.currentTarget.style.borderColor = "#10b981";
-          }}
-          onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
-              e.currentTarget.style.borderColor = "transparent";
-          }}
-      >
-          <Avatar
-              src={user?.avatar}
-              firstName={user?.name}
-              lastName={user?.surname}
-              size="md"
-          />
+      <div>
+        <div className={"route"}>
+          <span className={"city"}>{trip.villeDepart}</span>
+          <span className={"arrow"}>→</span>
+          <span className={"city"}>{trip.villeArrivee}</span>
+        </div>
 
-          <div>
-              <div
-                  style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "1rem",
-                      marginBottom: "0.75rem",
-                  }}
-              >
-          <span style={{fontSize: "1.125rem", fontWeight: "600"}}>
-            {trip.villeDepart}
-          </span>
-                  <span style={{color: "#9ca3af"}}>→</span>
-                  <span style={{fontSize: "1.125rem", fontWeight: "600"}}>
-            {trip.villeArrivee}
-          </span>
-              </div>
+        <div className={"meta"}>
+          <span>📅 {formatDate(trip.departureTime)}</span>
+          <span>💺 {trip.nbPlacesVides} places</span>
+          <span>🚗 {trip.carModel}</span>
+          <Badge variant={getBadgeVariant(trip.status)}>
+            {getStatusLabel(trip.status)}
+          </Badge>
+        </div>
 
-              <div
-                  style={{
-                      display: "flex",
-                      gap: "1.5rem",
-                      fontSize: "0.875rem",
-                      color: "#6b7280",
-                      marginBottom: "0.5rem",
-                      flexWrap: "wrap",
-                  }}
-              >
-                  <span>📅 {formatDate(trip.departureTime)}</span>
-                  <span>💺 {trip.nbPlacesVides} places</span>
-                  <span>🚗 {trip.carModel}</span>
-                  <Badge variant={getBadgeVariant(trip.status)}>
-                      {getStatusLabel(trip.status)}
-                  </Badge>
-              </div>
+        <div className={"meeting"}>
+          📍 {trip.meetingPoint}
+        </div>
 
-              <div
-                  style={{
-                      fontSize: "0.75rem",
-                      color: "#6b7280",
-                      marginBottom: "0.5rem",
-                  }}
-              >
-                  📍 {trip.meetingPoint}
-              </div>
-
-              {user && (
-                  <div
-                      style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                          fontSize: "0.875rem",
-                      }}
-                  >
-            <span style={{fontWeight: "500"}}>
-              {user.name} {user.surname}
-            </span>
-                      <span style={{color: "#fbbf24"}}>
-              ⭐ {user.rating.toFixed(1)}
-            </span>
-                      <span style={{color: "#6b7280"}}>
-              ({user.totalTrips} trajets)
-            </span>
-                  </div>
-              )}
+        {user && (
+          <div className={"user-info"}>
+            <span className={"name"}>{user.name} {user.surname}</span>
+            <span className={"rating"}>⭐ {user.rating.toFixed(1)}</span>
+            <span className={"trips"}>({user.totalTrips} trajets)</span>
           </div>
-
-
-          <div style={{textAlign: "right"}}>
-              <div style={{ /* ... */}}>{trip.price}€</div>
-              <div style={{ /* ... */}}>par personne</div>
-              <Button
-                  variant="secondary"
-                  onClick={onViewDetails}
-              >
-                  Voir détails
-              </Button>
-          </div>
+        )}
       </div>
+
+      <div className={"right"}>
+        <div className={"price"}>{trip.price}€</div>
+        <div className={"price-note"}>par personne</div>
+        <Button variant="secondary" onClick={onViewDetails}>
+          Voir détails
+        </Button>
+      </div>
+    </div>
   );
 }
