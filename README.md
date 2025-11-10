@@ -89,7 +89,10 @@ fetch('/sample_data.json')
   <li>Le tableau vide <code>[]</code> garantit que le fetch ne se fait qu'une fois</li>
   <li>C'est l'endroit idéal pour les appels API ou le chargement de données</li>
 </ul>
-
+<p>Pourquoi utiliser <code>fetch()</code> ?</p>
+<p>
+ fetch() permet de récupérer des données depuis un fichier ou une API de façon dynamique.
+</p>
 <h3>Impact sur les évaluations</h3>
 <ul>
   <li>Le flux utilisateur reste le même pour les tests</li>
