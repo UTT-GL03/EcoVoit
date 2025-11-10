@@ -1,42 +1,294 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Simple global CSS - concise and consistent */
+:root {
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --accent: #10a37f;
+  --accent-2: #2563eb;
+  --danger: #ef4444;
+  --radius: 10px;
+  --gap: 12px;
+  --max: 1100px;
+  --shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/* base */
+* {
+  box-sizing: border-box;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #0f172a;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main-container {
+  max-width: var(--max);
+  margin: 18px auto;
+  padding: 18px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+}
+.app-title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.app-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
+/* card */
 .card {
-  padding: 2em;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
 }
 
-.read-the-docs {
-  color: #888;
+/* stats */
+.stats-grid {
+  display: flex;
+  gap: var(--gap);
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.stat {
+  flex: 1 1 140px;
+  background: transparent;
+  padding: 10px;
+  border-radius: 8px;
+}
+.stat-value {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+.stat-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* trip list and card */
+.trip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.trip-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 4px 10px rgba(2, 6, 23, 0.04);
+}
+.trip-card .route {
+  font-weight: 600;
+}
+.route .city {
+  margin: 0 8px;
+}
+.route .arrow {
+  color: var(--muted);
+}
+.trip-card .meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.meeting {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+.user-info {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.right {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.price {
+  font-weight: 800;
+  color: var(--accent-2);
+}
+.price-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* generic buttons (also match classes used in common/Button.jsx) */
+button {
+  font-family: inherit;
+}
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary,
+.bg-green-600,
+.bg-green-700 {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-secondary,
+.bg-gray-200 {
+  background: #eef2f7;
+  color: #0f172a;
+}
+.text-white {
+  color: #fff;
+}
+.hover\\:bg-green-700:hover {
+  background: #0f8a67;
+}
+
+.trip-card button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--accent-2);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.trip-card button:hover {
+  opacity: 0.95;
+}
+
+/* forms */
+.trip-form-container {
+  max-width: 720px;
+  margin: 18px auto;
+}
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+input,
+textarea,
+select {
+  padding: 10px;
+  border: 1px solid #e6eef6;
+  border-radius: 8px;
+}
+label {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: var(--surface);
+  padding: 16px;
+  border-radius: 12px;
+  max-width: 720px;
+  width: 96%;
+  box-shadow: var(--shadow);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-title {
+  margin: 0;
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.modal-section {
+  margin-top: 12px;
+}
+.avatar-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.section-heading {
+  font-weight: 700;
+}
+.muted {
+  color: var(--muted);
+}
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+}
+.btn-secondary {
+  background: #eef2f7;
+  color: #0f172a;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* small helpers */
+.rounded-full {
+  border-radius: 9999px;
+}
+.inline-block {
+  display: inline-block;
+}
+
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid {
+    flex-direction: column;
+  }
 }
