@@ -17,7 +17,6 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
   <li>Il diminue le coût des trajets pour les automobilistes, car les frais de carburant et de péage sont partagés.</li>
   <li>Il aide à réduire les embouteillages et la saturation des routes.</li>
 </ul>
-<p>Ainsi, le covoiturage est bénéfique pour la planète et pour la société.</p>
 
 <h2>Effets de la numérisation</h2>
 <p>Les applications mobiles et web ont rendu le covoiturage plus facile et plus pratique. Les utilisateurs peuvent voir les trajets disponibles, réserver ou proposer un trajet en quelques clics et organiser des itinéraires pour éviter de parcourir trop de kilomètres.</p>
@@ -59,6 +58,45 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
 
 <p>On voit que les 3 services ont un score similaire, assez bas (en dessous de la moyenne).</p>
 
+<h2>Mises à jour techniques : chargement dynamique des données</h2>
+<p>Nous avons modifié la façon dont l'application charge les données d'exemple :</p>
+
+<h3>Changements effectués</h3>
+<ul>
+  <li>Le fichier de données a été déplacé dans <code>frontend/public/sample_data.json</code></li>
+  <li>Utilisation de <code>fetch()</code> pour charger les données au lieu d'un import statique</li>
+  <li>Implémentation avec <code>useEffect</code> et <code>useState</code> de React</li>
+</ul>
+
+<h3>Explications du code</h3>
+<p>Le composant principal utilise maintenant ces hooks React :</p>
+<pre>
+// État pour stocker les données
+const [data, setData] = useState({ users: [], trips: [], bookings: [] });
+
+// Effet pour charger les données au montage du composant
+useEffect(() => {
+fetch('/sample_data.json')
+.then(response => response.json())
+.then(json => setData(json));
+}, []); // [] signifie "exécuter une seule fois au montage"
+
+</pre>
+
+<p>Pourquoi utiliser <code>useEffect</code> ?</p>
+<ul>
+  <li>Il permet d'exécuter du code après le rendu du composant</li>
+  <li>Le tableau vide <code>[]</code> garantit que le fetch ne se fait qu'une fois</li>
+  <li>C'est l'endroit idéal pour les appels API ou le chargement de données</li>
+</ul>
+
+<h3>Impact sur les évaluations</h3>
+<ul>
+  <li>Le flux utilisateur reste le même pour les tests</li>
+  <li>La version 6.0.0 d'EcoIndex App pose des problèmes avec les scénarios automatisés</li>
+  <li>Recommandation : utiliser la version 5.6.0 pour les évaluations</li>
+</ul>
+
 <h2>Choix du modèle économique</h2>
 
 <p>Notre application sera financé grâce aux commissions prises sur chaque trajet réservé. Nous incluerons également des publicités. Pour finir, nous aimerions toucher des financements publics (Etat, collectivités territoriales), en promouvant l'aspect écoresponsable et la prise en compte des enjeux environnementaux d'EcoVoit.</p>
@@ -72,5 +110,3 @@ Le covoiturage est une solution intéressante : il permet de mettre moins de voi
   <li>"/booking?trip_id={id}" : La page s'affichant après avoir cliqué sur le bouton permettant de réserver un trajet</li>
   <li>"/user?user_id={id}" : La page affichant le compte de l'utilisateur, avec ses informations personnelles : Nom, prénom, numéro de téléphone, adresse mail, véhicule.</li>
 </ul>
-
-
