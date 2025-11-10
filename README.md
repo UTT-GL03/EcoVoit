@@ -113,3 +113,46 @@ fetch('/sample_data.json')
   <li>"/booking?trip_id={id}" : La page s'affichant après avoir cliqué sur le bouton permettant de réserver un trajet</li>
   <li>"/user?user_id={id}" : La page affichant le compte de l'utilisateur, avec ses informations personnelles : Nom, prénom, numéro de téléphone, adresse mail, véhicule.</li>
 </ul>
+
+<h2>Version 1.0.1 : Mesure de l'impact environnemental</h2>
+
+<p>Les mesures ont été réalisées grâce à l'extension EcoIndex.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nombre de requêtes</th>
+      <th>Taille de la page (Ko)</th>
+      <th>Taille du DOM</th>
+      <th>GES (gCO2e)</th>
+      <th>Eau (cl)</th>
+      <th>EcoIndex</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mode développement</strong></td>
+      <td>24</td>
+      <td>1497</td>
+      <td>102</td>
+      <td>1.38</td>
+      <td>2.08</td>
+      <td>80.83</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td><strong>Mode préproduction</strong></td>
+      <td>9</td>
+      <td>87</td>
+      <td>99</td>
+      <td>1.19</td>
+      <td>1.79</td>
+      <td>90.39</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>L'amélioration qu'on observe sur la version de préproduction par rapport à la version de développement s'explique par le processus de minification de React. Il réduit les tailles des noms de variable, supprime les espaces, commentaires, sauts de lignes, et il simplifie les expressions...</p>
