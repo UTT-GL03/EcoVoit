@@ -182,3 +182,85 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 <p>
 <strong>Par conséquent, nous avons simulé un passage à l'échelle avec un facteur multiplicateur d'environ ×333 pour les utilisateurs, ×667 pour les trajets et ×750 pour les réservations</strong>, ce qui correspond à une plateforme régionale mature après 5 à 6 mois d'activité.
 </p>
+
+<h3>Évolution de l'EcoIndex lors du passage à l'échelle</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Étape</th>
+            <th>EcoIndex</th>
+            <th>Note</th>
+            <th>Eau (cl)</th>
+            <th>GES (gCO2e)</th>
+            <th>Taille du DOM</th>
+            <th>Requêtes</th>
+            <th>Taille de la page (Ko)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chargement de la page</td>
+            <td>90</td>
+            <td>A</td>
+            <td>1.8</td>
+            <td>1.2</td>
+            <td>19</td>
+            <td>3</td>
+            <td>208.948</td>
+        </tr>
+        <tr>
+            <td>Attendre le chargement de la page</td>
+            <td>37</td>
+            <td>D</td>
+            <td>3.39</td>
+            <td>2.26</td>
+            <td>6036</td>
+            <td>5</td>
+            <td>1480.695</td>
+        </tr>
+        <tr>
+            <td>Cliquer sur le premier bouton "Voir"</td>
+            <td>83</td>
+            <td>A</td>
+            <td>2.01</td>
+            <td>1.34</td>
+            <td>29</td>
+            <td>5</td>
+            <td>1480.695</td>
+        </tr>
+        <tr>
+            <td>Consulter les détails du trajet</td>
+            <td>83 </td>
+            <td>A</td>
+            <td>2.01</td>
+            <td>1.34</td>
+            <td>29</td>
+            <td>5</td>
+            <td>1480.695</td>
+        </tr>
+        <tr>
+            <td>Attendre</td>
+            <td>83 </td>
+            <td>A</td>
+            <td>2.01</td>
+            <td>1.34</td>
+            <td>29</td>
+            <td>5</td>
+            <td>1480.695</td>
+        </tr>
+        <tr>
+            <td>Retourner à l'accueil via navigation</td>
+            <td>37</td>
+            <td>D</td>
+            <td>3.39</td>
+            <td>2.26</td>
+            <td>6036</td>
+            <td>5</td>
+            <td>1480.695</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>On observe une déterioration de la performance sur les deux actions nécessitant de charger les données. Cela est dû à la taille beaucoup plus importante du dataset suite au passage à l'échelle.</p>
+
