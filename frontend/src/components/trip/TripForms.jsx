@@ -2,22 +2,14 @@ import { useState } from "react";
 
 function TripForms() {
   const [formData, setFormData] = useState({
-    departureCity: "", // ville de départ
-    arrivalCity: "", // ville d'arrivée
-    departureDate: "", // date de départ
-    departureTime: "", // heure de départ
-    availableSeats: 1, // nombre de places
-    pricePerSeat: 0, // prix par place
-    description: "", // description du trajet
+    departureCity: "",
+    arrivalCity: "",
+    departureDate: "",
+    departureTime: "",
+    availableSeats: 1,
+    pricePerSeat: 0,
+    description: "",
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
