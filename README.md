@@ -156,3 +156,29 @@ fetch('/sample_data.json')
 </table>
 
 <p>L'amélioration qu'on observe sur la version de préproduction par rapport à la version de développement s'explique par le processus de minification de React. Il réduit les tailles des noms de variable, supprime les espaces, commentaires, sauts de lignes, et il simplifie les expressions...</p>
+
+<h2>Mesures de la consommation énergétique lors du passage à l'échelle</h2>
+
+<p>Maintenant que notre prototype est fonctionnel, nous pouvons simuler les effets du "passage à l'échelle".</p>
+
+<p>
+Dans le cas qui nous occupe du covoiturage et dans le cadre des fonctionnalités envisagées (recherche et réservation de trajets), l'augmentation de la quantité des données à traiter ne viendra pas principalement de l'augmentation des fonctionnalités de la plateforme, mais bien de la croissance naturelle de sa base d'utilisateurs et de l'activité qu'ils génèrent.
+</p>
+
+<p>Les données qui se multiplient avec l'usage sont de trois types :</p>
+
+<ul>
+  <li><strong>Les utilisateurs</strong> : Chaque nouvelle inscription ajoute un profil avec avatar, historique de trajets et notes. À raison d'une croissance typique de 10-20 nouveaux utilisateurs par jour pour une plateforme régionale, nous passerions de 3 à environ 1000 utilisateurs en 3 à 6 mois.</li>
+  
+  <li><strong>Les trajets proposés</strong> : Chaque utilisateur actif propose en moyenne 2 trajets par mois. Avec 1000 utilisateurs dont 20% sont conducteurs réguliers, cela représente environ 400 nouveaux trajets par mois, soit 2000 trajets au bout de 5 mois.</li>
+  
+  <li><strong>Les réservations</strong> : Chaque trajet génère en moyenne 1,5 réservation. Avec 2000 trajets, nous atteignons donc 3000 réservations, dont seules les 50% les plus récentes (1500) sont conservées dans la base active pour l'affichage.</li>
+</ul>
+
+<p>
+Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental nous semble contribuer grandement à l'utilité sociale de la plateforme : permettre aux utilisateurs de consulter l'historique complet des trajets et des réservations est essentiel pour établir la confiance et la transparence nécessaires au bon fonctionnement d'une plateforme de covoiturage.
+</p>
+
+<p>
+<strong>Par conséquent, nous avons simulé un passage à l'échelle avec un facteur multiplicateur d'environ ×333 pour les utilisateurs, ×667 pour les trajets et ×750 pour les réservations</strong>, ce qui correspond à une plateforme régionale mature après 5 à 6 mois d'activité.
+</p>
