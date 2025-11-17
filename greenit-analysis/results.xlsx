@@ -177,7 +177,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="date">17&#x2F;11&#x2F;2025 14:18:19</td>
+                            <td id="date">17&#x2F;11&#x2F;2025 16:24:49</td>
                             <td id="hostname">localhost</td>
                             <td id="device">desktop</td>
                             <td id="connection">Filaire</td>
@@ -245,11 +245,11 @@
                                     <tr class="pageRow ">
                                         <td class="col col-md-5 text-start"> > Chargement de la page</td>
                                         <td class="col col-md-1">
-                                            89&nbsp;<span class="grade A">A</span>
+                                            37&nbsp;<span class="grade D">D</span>
                                         </td>
-                                        <td class="col col-md-1">0</td>
-                                        <td class="col col-md-1">1.83</td>
-                                        <td class="col col-md-1">1.22</td>
+                                        <td class="col col-md-1">53</td>
+                                        <td class="col col-md-1">3.39</td>
+                                        <td class="col col-md-1">2.26</td>
                                         <td class="col col-md-2">2</td>
                                     </tr>
                             </tbody>

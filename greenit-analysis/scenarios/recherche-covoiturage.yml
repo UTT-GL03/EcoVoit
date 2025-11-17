@@ -6,9 +6,6 @@
       type: wait
       duration: 3000
 
-    - name: Parcourir la liste des trajets
-      type: scroll
-
     - name: Cliquer sur le premier bouton Voir
       type: click
       element: ul li button
@@ -26,5 +23,3 @@
       element: nav button:first-child
       waitForSelector: h3
 
-    - name: Parcourir à nouveau
-      type: scroll
