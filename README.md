@@ -185,6 +185,92 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 
 <h3>Évolution de l'EcoIndex lors du passage à l'échelle</h3>
 
+
+<p>Valeurs avant le passage à l'index : </p><br>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Étape</th>
+            <th>EcoIndex</th>
+            <th>Note</th>
+            <th>Eau (cl)</th>
+            <th>GES (gCO2e)</th>
+            <th>Taille du DOM</th>
+            <th>Requêtes</th>
+            <th>Taille de la page (Ko)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chargement de la page</td>
+            <td>89</td>
+            <td>A</td>
+            <td>1.83</td>
+            <td>1.22</td>
+            <td>40</td>
+            <td>3</td>
+            <td>208.953</td>
+        </tr>
+        <tr>
+            <td>Attendre le chargement de la page</td>
+            <td>89</td>
+            <td>A</td>
+            <td>1.83</td>
+            <td>1.22</td>
+            <td>40</td>
+            <td>5</td>
+            <td>215.008</td>
+        </tr>
+        <tr>
+            <td>Cliquer sur le premier bouton "Voir"</td>
+            <td>89</td>
+            <td>A</td>
+            <td>1.83</td>
+            <td>1.22</td>
+            <td>29</td>
+            <td>5</td>
+            <td>215.008</td>
+        </tr>
+        <tr>
+            <td>Consulter les détails du trajet</td>
+            <td>89</td>
+            <td>A</td>
+            <td>1.83</td>
+            <td>1.22</td>
+            <td>29</td>
+            <td>5</td>
+            <td>215.008</td>
+        </tr>
+        <tr>
+            <td>Attendre</td>
+            <td>89</td>
+            <td>A</td>
+            <td>1.83</td>
+            <td>1.22</td>
+            <td>29</td>
+            <td>5</td>
+            <td>215.008</td>
+        </tr>
+        <tr>
+            <td>Retourner à l'accueil via navigation</td>
+            <td>89</td>
+            <td>A</td>
+            <td>1.83</td>
+            <td>1.22</td>
+            <td>40</td>
+            <td>5</td>
+            <td>215.008</td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+
+<p>Valeurs après le passage à l'index : </p><br>
+
+
 <table>
     <thead>
         <tr>
@@ -262,5 +348,5 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
     </tbody>
 </table>
 
-<p>On observe une déterioration de la performance sur les deux actions nécessitant de charger les données. Cela est dû à la taille beaucoup plus importante du dataset suite au passage à l'échelle.</p>
+<p>On observe une déterioration de la performance sur les deux actions nécessitant de charger les données. Cela est dû à la taille beaucoup plus importante du dataset suite au passage à l'échelle. Sur les autres actions, la différence est minime.</p>
 
