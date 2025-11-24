@@ -7,7 +7,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      accessible_backend:
+      updated_samples:
         condition: service_completed_successfully
 
   backend:
@@ -26,10 +26,13 @@ services:
 
   accessible_backend:
     image: curlimages/curl
+    environment:
+      - COUCHDB_USER
+      - COUCHDB_PASSWORD
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
-        alias put="curl -X PUT -u '${COUCHDB_USER}:${COUCHDB_PASSWORD}'"
+        alias put="curl -X PUT -u '$${COUCHDB_USER}:$${COUCHDB_PASSWORD}'"
         put backend:5984/_node/nonode@nohost/_config/chttpd/enable_cors --data '"true"'
         put backend:5984/_node/nonode@nohost/_config/cors/origins --data '"*"'
         put backend:5984/users
@@ -41,6 +44,34 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+
+  updated_samples:
+    image: curlimages/curl
+    environment:
+      - COUCHDB_USER
+      - COUCHDB_PASSWORD
+    volumes:
+      - ./public:/data:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        curl -X POST -u "$${COUCHDB_USER}:$${COUCHDB_PASSWORD}" \
+          http://backend:5984/users/_bulk_docs \
+          -H "Content-Type: application/json" \
+          -d @/data/users_data.json
+
+        curl -X POST -u "$${COUCHDB_USER}:$${COUCHDB_PASSWORD}" \
+          http://backend:5984/trips/_bulk_docs \
+          -H "Content-Type: application/json" \
+          -d @/data/trips_data.json
+
+        curl -X POST -u "$${COUCHDB_USER}:$${COUCHDB_PASSWORD}" \
+          http://backend:5984/bookings/_bulk_docs \
+          -H "Content-Type: application/json" \
+          -d @/data/bookings_data.json
+    depends_on:
+      accessible_backend:
+        condition: service_completed_successfully
 
 volumes:
   couchdb-data:
