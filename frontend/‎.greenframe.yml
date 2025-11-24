@@ -1,0 +1,8 @@
+# On met l'IP réseau ici pour que ça marche tout le temps
+baseURL: http://192.168.56.1:5173
+projectName: EcoVoit
+scenarios:
+  - name: Test Simple
+    path: ./scenarios/test_simple.js
+containers:
+  - eco-voit-app

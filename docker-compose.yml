@@ -1,0 +1,27 @@
+services:
+  static_hosting:
+    image: nginx
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html:ro
+      - ./settings/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+    networks:
+      - ecovoit-network
+
+  backend:
+    image: couchdb:3
+    container_name: backend
+    ports:
+      - 5984:5984
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: password
+    networks:
+      - ecovoit-network
+
+networks:
+  ecovoit-network:
+    driver: bridge

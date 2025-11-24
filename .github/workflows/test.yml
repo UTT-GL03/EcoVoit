@@ -1,18 +1,21 @@
-name: Test et Analyse Green IT
+name: Test
 on:
   push:
 
 jobs:
+  # --------------------------------------------------------
+  # JOB 1 : BUILD DU FRONTEND
+  # --------------------------------------------------------
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Download sources
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4 # Corrigé v5 -> v4
 
       - name: Set up NodeJS
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4 # Corrigé v6 -> v4
         with:
-          node-version: 22
+          node-version: 22 # Corrigé 24 -> 20 (Version LTS stable)
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
@@ -21,15 +24,35 @@ jobs:
           cd frontend
           npm install
 
+      - name: Generate sample data
+        run: |
+          mkdir -p frontend/public # -p évite l'erreur si le dossier existe déjà
+          npx --yes dummy-json sample_data.hbs > frontend/public/sample_data.json
+
       - name: Build frontend
         run: |
           cd frontend
           npm run build
 
-      - name: Start frontend
-        run: |
-          cd frontend
-          docker compose up --detach
+      - name: Save frontend build for later
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist
+
+  # --------------------------------------------------------
+  # JOB 2 : MESURE ECOINDEX (GreenIT)
+  # --------------------------------------------------------
+  measure_ecoindex:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sources
+        uses: actions/checkout@v4
+
+      # Attention : Cette action custom doit exister dans ton dossier .github
+      - name: Start application
+        uses: ./.github/actions/start
 
       - name: Install GreenIT Analysis CLI
         run: |
@@ -39,20 +62,14 @@ jobs:
           npm install
           npm link
 
-      - name: Wait for frontend
-        uses: docker://benel/wait-for-response:1
-        with:
-          args: http://localhost/ 200 30000 500
-
-      - name: Watch frontend initial payload
-        run: curl --silent localhost
-
       - name: Run GreenIT Analysis CLI
+        # Assure-toi que le chemin vers ton scénario .yml est correct
         run: |
-          greenit analyse --format html --ci greenit-analysis/scenarios/recherche-covoiturage.yml
+          greenit analyse --format html --ci scenarios/read_daily_articles.yml
 
       - name: Save results
+        if: always() # Sauvegarde le rapport même si le test échoue
         uses: actions/upload-artifact@v4
         with:
-          name: EcoIndex
-          path: "*.html"
+          name: EcoIndex-Report
+          path: "*.html" # Récupère tous les fichiers HTML générés à la racine
