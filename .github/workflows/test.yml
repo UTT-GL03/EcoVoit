@@ -82,3 +82,35 @@ jobs:
         with:
           name: EcoIndex-Report
           path: "*.html"
+
+  measure_energy_consumption:
+    needs:
+      - build
+      - build_samples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sources
+        uses: actions/checkout@v4
+
+      - name: Start application
+        uses: ./.github/actions/start
+
+      - name: Install GreenFrame CLI
+        run: |
+          wget https://github.com/benel/greenframe-cli/archive/refs/heads/post-app.zip
+          unzip post-app.zip
+          cd greenframe-cli-post-app
+          npm install -g corepack
+          yarn
+          yarn build
+
+      - name: Run GreenFrame CLI
+        run: |
+          ./greenframe-cli-post-app/bin/run analyze > Consumption.txt
+
+      - name: Save results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Consumption
+          path: Consumption.txt
