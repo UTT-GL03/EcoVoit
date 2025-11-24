@@ -1,4 +1,4 @@
-baseURL: http://localhost
+﻿baseURL: http://localhost
 projectName: EcoVoit
 scenarios:
   - name: Consulter les trajets
