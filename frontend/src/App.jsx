@@ -14,7 +14,6 @@ function App() {
     params: new URLSearchParams(window.location.search),
   });
 
-  // Configuration CouchDB
   const COUCHDB_URL = "/api";
   const COUCHDB_USER = "admin";
   const COUCHDB_PASSWORD = "password";
@@ -22,14 +21,12 @@ function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Créer les headers d'authentification
         const auth = btoa(`${COUCHDB_USER}:${COUCHDB_PASSWORD}`);
         const headers = {
           Authorization: `Basic ${auth}`,
           "Content-Type": "application/json",
         };
 
-        // Récupérer les utilisateurs
         const usersResponse = await fetch(
           `${COUCHDB_URL}/users/_all_docs?include_docs=true`,
           { headers }
@@ -38,7 +35,6 @@ function App() {
           throw new Error(`Users: HTTP ${usersResponse.status}`);
         const usersJson = await usersResponse.json();
 
-        // Récupérer les trajets
         const tripsResponse = await fetch(
           `${COUCHDB_URL}/trips/_all_docs?include_docs=true`,
           { headers }
@@ -47,7 +43,6 @@ function App() {
           throw new Error(`Trips: HTTP ${tripsResponse.status}`);
         const tripsJson = await tripsResponse.json();
 
-        // Récupérer les réservations
         const bookingsResponse = await fetch(
           `${COUCHDB_URL}/bookings/_all_docs?include_docs=true`,
           { headers }
@@ -56,7 +51,6 @@ function App() {
           throw new Error(`Bookings: HTTP ${bookingsResponse.status}`);
         const bookingsJson = await bookingsResponse.json();
 
-        // Créer l'objet data au format attendu (comme avec sample_data.json)
         setData({
           users: usersJson.rows.map((row) => row.doc),
           trips: tripsJson.rows.map((row) => row.doc),
