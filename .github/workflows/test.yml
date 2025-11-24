@@ -74,7 +74,7 @@ jobs:
 
       - name: Run GreenIT Analysis CLI
         run: |
-          greenit analyse --format html --ci scenarios/greenit-analysis/scenarios/recherche-covoiturage.yml
+          greenit analyse --format html --ci greenit-analysis/scenarios/recherche-covoiturage.yml
 
       - name: Save results
         if: always()
