@@ -3,19 +3,16 @@ on:
   push:
 
 jobs:
-  # --------------------------------------------------------
-  # JOB 1 : BUILD DU FRONTEND
-  # --------------------------------------------------------
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Download sources
-        uses: actions/checkout@v4 # Corrigé v5 -> v4
+        uses: actions/checkout@v4
 
       - name: Set up NodeJS
-        uses: actions/setup-node@v4 # Corrigé v6 -> v4
+        uses: actions/setup-node@v4
         with:
-          node-version: 22 # Corrigé 24 -> 20 (Version LTS stable)
+          node-version: 22
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
@@ -40,9 +37,6 @@ jobs:
           name: frontend-build
           path: frontend/dist
 
-  # --------------------------------------------------------
-  # JOB 2 : MESURE ECOINDEX (GreenIT)
-  # --------------------------------------------------------
   measure_ecoindex:
     needs: build
     runs-on: ubuntu-latest
@@ -50,7 +44,6 @@ jobs:
       - name: Download sources
         uses: actions/checkout@v4
 
-      # Attention : Cette action custom doit exister dans ton dossier .github
       - name: Start application
         uses: ./.github/actions/start
 
@@ -63,7 +56,7 @@ jobs:
           npm link
 
       - name: Run GreenIT Analysis CLI
-        # Assure-toi que le chemin vers ton scénario .yml est correct
+
         run: |
           greenit analyse --format html --ci scenarios/read_daily_articles.yml
 
@@ -72,4 +65,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: EcoIndex-Report
-          path: "*.html" # Récupère tous les fichiers HTML générés à la racine
+          path: "*.html"
