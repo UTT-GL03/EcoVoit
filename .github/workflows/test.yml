@@ -21,11 +21,6 @@ jobs:
           cd frontend
           npm install
 
-      - name: Generate sample data
-        run: |
-          mkdir -p frontend/public # -p évite l'erreur si le dossier existe déjà
-          npx --yes dummy-json sample_data.hbs > frontend/public/sample_data.json
-
       - name: Build frontend
         run: |
           cd frontend
@@ -37,8 +32,30 @@ jobs:
           name: frontend-build
           path: frontend/dist
 
+  build_samples:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sources
+        uses: actions/checkout@v4
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate sample data
+        run: node generate_data.js
+
+      - name: Save samples for later
+        uses: actions/upload-artifact@v4
+        with:
+          name: samples
+          path: public/*.json
+
   measure_ecoindex:
-    needs: build
+    needs:
+      - build
+      - build_samples
     runs-on: ubuntu-latest
     steps:
       - name: Download sources
@@ -56,12 +73,11 @@ jobs:
           npm link
 
       - name: Run GreenIT Analysis CLI
-
         run: |
           greenit analyse --format html --ci scenarios/read_daily_articles.yml
 
       - name: Save results
-        if: always() # Sauvegarde le rapport même si le test échoue
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: EcoIndex-Report

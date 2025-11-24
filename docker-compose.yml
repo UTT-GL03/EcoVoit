@@ -7,21 +7,40 @@ services:
     ports:
       - 80:80
     depends_on:
-      - backend
-    networks:
-      - ecovoit-network
+      accessible_backend:
+        condition: service_completed_successfully
 
   backend:
     image: couchdb:3
-    container_name: backend
     ports:
       - 5984:5984
     environment:
-      COUCHDB_USER: admin
-      COUCHDB_PASSWORD: password
-    networks:
-      - ecovoit-network
+      - COUCHDB_USER
+      - COUCHDB_PASSWORD
+    volumes:
+      - couchdb-data:/opt/couchdb/data
+    healthcheck:
+      test: curl -f http://localhost:5984/_up || exit 1
+      start_period: 10s
+      start_interval: 2s
 
-networks:
-  ecovoit-network:
-    driver: bridge
+  accessible_backend:
+    image: curlimages/curl
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        alias put="curl -X PUT -u '${COUCHDB_USER}:${COUCHDB_PASSWORD}'"
+        put backend:5984/_node/nonode@nohost/_config/chttpd/enable_cors --data '"true"'
+        put backend:5984/_node/nonode@nohost/_config/cors/origins --data '"*"'
+        put backend:5984/users
+        put backend:5984/users/_security --data '{"members":{"roles":[]},"admins":{"roles":["_admin"]}}'
+        put backend:5984/trips
+        put backend:5984/trips/_security --data '{"members":{"roles":[]},"admins":{"roles":["_admin"]}}'
+        put backend:5984/bookings
+        put backend:5984/bookings/_security --data '{"members":{"roles":[]},"admins":{"roles":["_admin"]}}'
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  couchdb-data:

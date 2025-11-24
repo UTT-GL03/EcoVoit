@@ -9,28 +9,56 @@ runs:
       with:
         name: frontend-build
         path: frontend/dist
+
     - name: Start containers
       run: |
         export COUCHDB_USER="admin"
         export COUCHDB_PASSWORD="password"
         docker compose up --detach
       shell: bash
+
     - name: Wait for frontend
       uses: docker://benel/wait-for-response:1
       with:
         args: http://localhost/ 200 30000 500
-    - name: Wait for CouchDB
-      uses: docker://benel/wait-for-response:1
+
+    - name: Get samples
+      uses: actions/download-artifact@v4
       with:
-        args: http://localhost:5984/ 200 30000 500
+        name: samples
+        path: .
+
+    - name: Upload users data
+      run: |
+        curl -X POST http://localhost:5984/users/_bulk_docs \
+          -H "Content-Type: application/json" \
+          -d @users_data.json
+      shell: bash
+
+    - name: Upload trips data
+      run: |
+        curl -X POST http://localhost:5984/trips/_bulk_docs \
+          -H "Content-Type: application/json" \
+          -d @trips_data.json
+      shell: bash
+
+    - name: Upload bookings data
+      run: |
+        curl -X POST http://localhost:5984/bookings/_bulk_docs \
+          -H "Content-Type: application/json" \
+          -d @bookings_data.json
+      shell: bash
+
     - name: Wait for users database
       uses: docker://benel/wait-for-response:1
       with:
         args: http://localhost:5984/users/_all_docs?limit=1 200 30000 500
+
     - name: Wait for trips database
       uses: docker://benel/wait-for-response:1
       with:
         args: http://localhost:5984/trips/_all_docs?limit=1 200 30000 500
+
     - name: Wait for bookings database
       uses: docker://benel/wait-for-response:1
       with:
