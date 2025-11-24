@@ -2,7 +2,7 @@
 projectName: EcoVoit
 scenarios:
   - name: Consulter les trajets
-    path: ./consult_trips.js
+    path: ./scenarios/consult_trips.js
 containers:
   - ecovoit-static_hosting-1
   - ecovoit-backend-1
