@@ -106,7 +106,7 @@ jobs:
 
       - name: Run GreenFrame CLI
         run: |
-          ./greenframe-cli-post-app/bin/run analyze --configFile ./greenframe.yml > Consumption.txt
+          ./greenframe-cli-post-app/bin/run analyze > Consumption.txt
 
       - name: Save results
         if: always()
