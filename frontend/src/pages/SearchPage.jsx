@@ -53,13 +53,13 @@ export default function SearchPage({ data, navigate }) {
       <h3>Résultats ({trips.length})</h3>
       <ul>
         {trips.map((trip) => (
-          <li key={trip.id} style={{ marginBottom: 8 }}>
+          <li key={trip._id} style={{ marginBottom: 8 }}>
             <strong>
               {trip.villeDepart} → {trip.villeArrivee}
             </strong>{" "}
             — {trip.price}€ — {new Date(trip.departureTime).toLocaleString()}
             <div>
-              <button onClick={() => navigate("/trip", `trip_id=${trip.id}`)}>
+              <button onClick={() => navigate("/trip", `trip_id=${trip._id}`)}>
                 Voir
               </button>
             </div>

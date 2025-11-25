@@ -1,50 +1,43 @@
-import React, { useState } from "react";
-
 export default function BookingPage({ data, params, navigate }) {
   const tripId = params.get("trip_id");
-  const [seats, setSeats] = useState(1);
-  const [name, setName] = useState("");
-  const trip = (data.trips || []).find((t) => t.id === tripId);
-  if (!trip) return <div>Trajet non trouvé</div>;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Réserver", { tripId, seats, name });
-    alert("Réservation simulée — voir la console");
-    navigate("/search");
+  // CORRECTION: Utiliser _id
+  const trip = (data.trips || []).find((t) => t._id === tripId);
+
+  if (!trip) {
+    return (
+      <div>
+        <h2>Trajet non trouvé</h2>
+        <button onClick={() => navigate("/search", "")}>Retour</button>
+      </div>
+    );
+  }
+
+  const handleBooking = () => {
+    alert(
+      `Réservation confirmée pour ${trip.villeDepart} → ${trip.villeArrivee}`
+    );
+    navigate("/search", "");
   };
 
   return (
     <div>
       <h2>Réserver un trajet</h2>
       <p>
-        {trip.villeDepart} → {trip.villeArrivee} —{" "}
-        {new Date(trip.departureTime).toLocaleString()}
+        <strong>
+          {trip.villeDepart} → {trip.villeArrivee}
+        </strong>
       </p>
-      <form onSubmit={handleSubmit} style={{ display: "grid", gap: 8 }}>
-        <label>
-          Nom complet
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Nombre de places
-          <input
-            type="number"
-            min={1}
-            max={trip.nbPlacesVides || 1}
-            value={seats}
-            onChange={(e) => setSeats(Number(e.target.value))}
-            required
-          />
-        </label>
-        <div>
-          <button type="submit">Confirmer la réservation</button>
-        </div>
-      </form>
+      <p>Prix: {trip.price}€</p>
+      <p>Places disponibles: {trip.nbPlacesVides}</p>
+
+      <button onClick={handleBooking}>Confirmer la réservation</button>
+      <button
+        onClick={() => navigate("/trip", `trip_id=${trip._id}`)}
+        style={{ marginLeft: "10px" }}
+      >
+        Retour
+      </button>
     </div>
   );
 }
