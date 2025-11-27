@@ -350,3 +350,103 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 
 <p>On observe une déterioration de la performance sur les deux actions nécessitant de charger les données. Cela est dû à la taille beaucoup plus importante du dataset suite au passage à l'échelle. Sur les autres actions, la différence est minime.</p>
 
+<h2>Version 2.0.0 : Données stockée dans une base de données</h2>
+
+<p>Dans un but de réduction de l'impact environnemental, nous stockons à présent les données dans une base de données CouchDB. Nous filtrons les données qui nous intéressent du côté du serveur. </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>CPU (s)</th>
+      <th>Screen (s)</th>
+      <th>Total Time (s)</th>
+      <th>Memory (B)</th>
+      <th>Disk (B)</th>
+      <th>Network (B)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Navigateur</td>
+      <td>0.0798</td>
+      <td>17.7</td>
+      <td>18.8</td>
+      <td>1.24e+8</td>
+      <td>0.00</td>
+      <td>3.98e+5</td>
+    </tr>
+    <tr>
+      <td>Serveur Web</td>
+      <td>0.00137</td>
+      <td>0.00</td>
+      <td>18.4</td>
+      <td>5.58e+6</td>
+      <td>0.00</td>
+      <td>5.80e+5</td>
+    </tr>
+    <tr>
+      <td>Base de données</td>
+      <td>0.0531</td>
+      <td>0.00</td>
+      <td>18.4</td>
+      <td>8.78e+7</td>
+      <td>0.00</td>
+      <td>1.82e+5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ci-dessus, l'effet sur l'utilisation des ressources de l'introduction d'une base de données dans l'application, lors de la consultation des trajets</p>
+<p>L’introduction de la base de données CouchDB a permis de mieux répartir la charge entre les différents services de ta plateforme. Le navigateur reste le plus gourmand en ressources, avec une consommation élevée en CPU  et en mémoire, principalement due à l’affichage et au traitement des données. Le serveur web, en revanche, est très léger, ce qui montre une bonne optimisation côté backend. La base de données consomme davantage de mémoire que le serveur web, mais son impact sur le CPU reste modéré . Enfin, le réseau est surtout sollicité par le serveur web , ce qui suggère que des optimisations pourraient être apportées pour réduire la quantité de données transmises.</p>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>CPU (Wh)</th>
+      <th>Memory (Wh)</th>
+      <th>Disk (Wh)</th>
+      <th>Network (Wh)</th>
+      <th>Screen (Wh)</th>
+      <th>Total (Wh)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Navigateur</td>
+      <td>0.0010</td>
+      <td>0.000047</td>
+      <td>0.0</td>
+      <td>0.0020</td>
+      <td>0.069</td>
+      <td>0.072</td>
+    </tr>
+    <tr>
+      <td>Serveur Web</td>
+      <td>0.000024</td>
+      <td>0.0000029</td>
+      <td>0.0</td>
+      <td>0.0030</td>
+      <td>0.0</td>
+      <td>0.0030</td>
+    </tr>
+    <tr>
+      <td>Base de données</td>
+      <td>0.00093</td>
+      <td>0.000046</td>
+      <td>0.0</td>
+      <td>0.00093</td>
+      <td>0.0</td>
+      <td>0.0019</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Ci-dessus, l'effet sur la consommation énergétique de l'introduction d'une base de données dans l'application, lors de la consultation des trajets</p>
+<p>D’un point de vue énergétique, le navigateur est de loin le plus coûteux, principalement à cause de l’écran, qui domine largement les autres postes de consommation. Le serveur web et la base de données, en revanche, ont un impact minimal. Cela confirme que l’essentiel de l’énergie est dépensée côté client, notamment lors de l’affichage et de l’interaction avec l’interface. Ces résultats soulignent l’importance d’optimiser le rendu côté navigateur pour réduire l’empreinte énergétique globale de la plateforme.</p>
+
+<br><br>
+
+<p>L’intégration de CouchDB a permis de centraliser et optimiser le traitement des données, réduisant ainsi la charge sur le navigateur et améliorant l’efficacité globale du système. Grâce à cette approche, la consommation énergétique et les ressources utilisées côté serveur restent très faibles, ce qui limite l’impact environnemental de la plateforme. Cependant, le navigateur reste le principal poste de consommation, notamment en raison de l’affichage et de la gestion des données. Cette nouvelle version représente donc une avancée significative vers une plateforme plus durable et scalable.</p>
