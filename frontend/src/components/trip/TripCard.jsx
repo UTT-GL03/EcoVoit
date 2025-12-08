@@ -59,13 +59,13 @@ export default function TripCard({ trip, user, onViewDetails }) {
           </Badge>
         </div>
 
-        <div className={"meeting"}>
-          📍 {trip.meetingPoint}
-        </div>
+        <div className={"meeting"}>📍 {trip.meetingPoint}</div>
 
         {user && (
           <div className={"user-info"}>
-            <span className={"name"}>{user.name} {user.surname}</span>
+            <span className={"name"}>
+              {user.name} {user.surname}
+            </span>
             <span className={"rating"}>⭐ {user.rating.toFixed(1)}</span>
             <span className={"trips"}>({user.totalTrips} trajets)</span>
           </div>

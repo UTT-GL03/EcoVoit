@@ -6,7 +6,7 @@ import BookingPage from "./pages/BookingPage";
 import UserPage from "./pages/UserPage";
 
 function App() {
-  const [data, setData] = useState({ users: [], trips: [], bookings: [] });
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [route, setRoute] = useState({

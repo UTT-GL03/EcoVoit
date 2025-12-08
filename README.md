@@ -185,9 +185,7 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 
 <h3>Évolution de l'EcoIndex lors du passage à l'échelle</h3>
 
-
 <p>Valeurs avant le passage à l'index : </p><br>
-
 
 <table>
     <thead>
@@ -269,7 +267,6 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 <br><br>
 
 <p>Valeurs après le passage à l'index : </p><br>
-
 
 <table>
     <thead>
