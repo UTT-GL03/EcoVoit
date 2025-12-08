@@ -398,7 +398,7 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 </table>
 
 <p>Ci-dessus, l'effet sur l'utilisation des ressources de l'introduction d'une base de données dans l'application, lors de la consultation des trajets</p>
-<p>L’introduction de la base de données CouchDB a permis de mieux répartir la charge entre les différents services de ta plateforme. Le navigateur reste le plus gourmand en ressources, avec une consommation élevée en CPU  et en mémoire, principalement due à l’affichage et au traitement des données. Le serveur web, en revanche, est très léger, ce qui montre une bonne optimisation côté backend. La base de données consomme davantage de mémoire que le serveur web, mais son impact sur le CPU reste modéré . Enfin, le réseau est surtout sollicité par le serveur web , ce qui suggère que des optimisations pourraient être apportées pour réduire la quantité de données transmises.</p>
+<p>L’introduction de la base de données CouchDB a permis de mieux répartir la charge entre les différents services de la plateforme. Le navigateur reste le plus gourmand en ressources, avec une consommation élevée en CPU  et en mémoire, principalement due à l’affichage et au traitement des données. Le serveur web, en revanche, est très léger, ce qui montre une bonne optimisation côté backend. La base de données consomme davantage de mémoire que le serveur web, mais son impact sur le CPU reste modéré . Enfin, le réseau est surtout sollicité par le serveur web , ce qui suggère que des optimisations pourraient être apportées pour réduire la quantité de données transmises.</p>
 <br>
 
 <table>
