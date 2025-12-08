@@ -350,7 +350,7 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 
 <p>On observe une déterioration de la performance sur les deux actions nécessitant de charger les données. Cela est dû à la taille beaucoup plus importante du dataset suite au passage à l'échelle. Sur les autres actions, la différence est minime.</p>
 
-<h2>Version 2.0.0 : Données stockée dans une base de données</h2>
+<h2>Version 2.0.0 : Données stockées dans une base de données</h2>
 
 <p>Dans un but de réduction de l'impact environnemental, nous stockons à présent les données dans une base de données CouchDB. Nous filtrons les données qui nous intéressent du côté du serveur. </p>
 
