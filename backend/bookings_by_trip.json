@@ -1,0 +1,7 @@
+{
+  "index": {
+    "fields": ["tripId"]
+  },
+  "name": "bookings_by_trip",
+  "type": "json"
+}

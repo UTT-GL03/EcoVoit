@@ -1,7 +1,6 @@
 export default function BookingPage({ data, params, navigate }) {
   const tripId = params.get("trip_id");
 
-  // CORRECTION: Utiliser _id
   const trip = (data.trips || []).find((t) => t._id === tripId);
 
   if (!trip) {

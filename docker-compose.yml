@@ -7,7 +7,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      updated_samples:
+      create_indexes:
         condition: service_completed_successfully
 
   backend:
@@ -71,6 +71,38 @@ services:
           -d @/data/bookings_data.json
     depends_on:
       accessible_backend:
+        condition: service_completed_successfully
+
+  create_indexes:
+    image: curlimages/curl
+    environment:
+      - COUCHDB_USER
+      - COUCHDB_PASSWORD
+    volumes:
+      - ./backend:/indexes:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        echo "Creating indexes..."
+
+        curl -X POST -u "$${COUCHDB_USER}:$${COUCHDB_PASSWORD}" \
+          http://backend:5984/trips/_index \
+          -H "Content-Type: application/json" \
+          -d @/indexes/trips_search_index.json
+
+        curl -X POST -u "$${COUCHDB_USER}:$${COUCHDB_PASSWORD}" \
+          http://backend:5984/trips/_index \
+          -H "Content-Type: application/json" \
+          -d @/indexes/trips_by_conductor.json
+
+        curl -X POST -u "$${COUCHDB_USER}:$${COUCHDB_PASSWORD}" \
+          http://backend:5984/bookings/_index \
+          -H "Content-Type: application/json" \
+          -d @/indexes/bookings_by_trip.json
+
+        echo "✅ Indexes created successfully!"
+    depends_on:
+      updated_samples:
         condition: service_completed_successfully
 
 volumes:

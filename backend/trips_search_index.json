@@ -1,0 +1,7 @@
+{
+  "index": {
+    "fields": ["status", "villeDepart", "villeArrivee", "departureTime"]
+  },
+  "name": "trips_search_index",
+  "type": "json"
+}

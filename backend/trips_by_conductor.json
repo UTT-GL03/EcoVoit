@@ -1,0 +1,7 @@
+{
+  "index": {
+    "fields": ["conductorId"]
+  },
+  "name": "trips_by_conductor",
+  "type": "json"
+}

@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import SearchPage from "./pages/SearchPage";
 import TripPage from "./pages/TripPage";
 import BookingPage from "./pages/BookingPage";
@@ -18,54 +18,54 @@ function App() {
   const COUCHDB_USER = "admin";
   const COUCHDB_PASSWORD = "password";
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const auth = btoa(`${COUCHDB_USER}:${COUCHDB_PASSWORD}`);
-        const headers = {
-          Authorization: `Basic ${auth}`,
-          "Content-Type": "application/json",
-        };
+  const loadData = useCallback(async () => {
+    try {
+      const auth = btoa(`${COUCHDB_USER}:${COUCHDB_PASSWORD}`);
+      const headers = {
+        Authorization: `Basic ${auth}`,
+        "Content-Type": "application/json",
+      };
 
-        const usersResponse = await fetch(
-          `${COUCHDB_URL}/users/_all_docs?include_docs=true`,
-          { headers }
-        );
-        if (!usersResponse.ok)
-          throw new Error(`Users: HTTP ${usersResponse.status}`);
-        const usersJson = await usersResponse.json();
+      const usersResponse = await fetch(
+        `${COUCHDB_URL}/users/_all_docs?include_docs=true`,
+        { headers }
+      );
+      if (!usersResponse.ok)
+        throw new Error(`Users: HTTP ${usersResponse.status}`);
+      const usersJson = await usersResponse.json();
 
-        const tripsResponse = await fetch(
-          `${COUCHDB_URL}/trips/_all_docs?include_docs=true`,
-          { headers }
-        );
-        if (!tripsResponse.ok)
-          throw new Error(`Trips: HTTP ${tripsResponse.status}`);
-        const tripsJson = await tripsResponse.json();
+      const tripsResponse = await fetch(
+        `${COUCHDB_URL}/trips/_all_docs?include_docs=true`,
+        { headers }
+      );
+      if (!tripsResponse.ok)
+        throw new Error(`Trips: HTTP ${tripsResponse.status}`);
+      const tripsJson = await tripsResponse.json();
 
-        const bookingsResponse = await fetch(
-          `${COUCHDB_URL}/bookings/_all_docs?include_docs=true`,
-          { headers }
-        );
-        if (!bookingsResponse.ok)
-          throw new Error(`Bookings: HTTP ${bookingsResponse.status}`);
-        const bookingsJson = await bookingsResponse.json();
+      const bookingsResponse = await fetch(
+        `${COUCHDB_URL}/bookings/_all_docs?include_docs=true`,
+        { headers }
+      );
+      if (!bookingsResponse.ok)
+        throw new Error(`Bookings: HTTP ${bookingsResponse.status}`);
+      const bookingsJson = await bookingsResponse.json();
 
-        setData({
-          users: usersJson.rows.map((row) => row.doc),
-          trips: tripsJson.rows.map((row) => row.doc),
-          bookings: bookingsJson.rows.map((row) => row.doc),
-        });
-      } catch (err) {
-        console.error("Erreur de chargement:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
+      setData({
+        users: usersJson.rows.map((row) => row.doc),
+        trips: tripsJson.rows.map((row) => row.doc),
+        bookings: bookingsJson.rows.map((row) => row.doc),
+      });
+    } catch (err) {
+      console.error("Erreur de chargement:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   console.log("Data loaded:", data);
 
