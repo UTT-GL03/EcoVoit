@@ -1,0 +1,529 @@
+/* ============================================
+   IMPORT DES VARIABLES DEPUIS AdminPage
+   ============================================ */
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-light: #dbeafe;
+  --color-primary-dark: #1e40af;
+
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-success-dark: #059669;
+
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-warning-dark: #d97706;
+
+  --color-danger: #ef4444;
+  --color-danger-light: #fee2e2;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --radius: 8px;
+  --radius-lg: 12px;
+  --transition: all 0.2s ease;
+}
+
+/* ============================================
+   PAGE PRINCIPALE
+   ============================================ */
+.booking-page {
+  min-height: 100vh;
+  background-color: var(--color-gray-50);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ============================================
+   HEADER (même style que Admin)
+   ============================================ */
+.booking-header {
+  background-color: white;
+  border-bottom: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.booking-header-text h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.booking-header-text p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--color-gray-500);
+}
+
+/* ============================================
+   BOUTONS (même style que Admin)
+   ============================================ */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--color-success);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-success-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-300);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-400);
+}
+
+/* ============================================
+   CONTENU PRINCIPAL
+   ============================================ */
+.booking-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* ============================================
+   CARD DE BASE (même style que Admin)
+   ============================================ */
+.trip-info-card,
+.booking-form-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.trip-info-header,
+.booking-form-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-gray-50);
+}
+
+.trip-info-header svg,
+.booking-form-header svg {
+  color: var(--color-success);
+}
+
+.trip-info-header h3,
+.booking-form-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+.trip-info-body,
+.booking-form-body {
+  padding: 1.5rem;
+}
+
+/* ============================================
+   ROUTE VISUELLE
+   ============================================ */
+.trip-route {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--color-gray-50);
+  border-radius: var(--radius);
+}
+
+.trip-route-point {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.route-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.route-dot-start {
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 4px var(--color-success-light);
+}
+
+.route-dot-end {
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-primary-light);
+}
+
+.route-line {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-success),
+    var(--color-primary)
+  );
+  margin-left: 7px;
+}
+
+.route-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.route-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-500);
+}
+
+.route-city {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+}
+
+/* ============================================
+   DÉTAILS DU TRAJET
+   ============================================ */
+.trip-info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.info-item svg {
+  color: var(--color-gray-400);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-500);
+}
+
+.info-value {
+  font-size: 0.9375rem;
+  color: var(--color-gray-900);
+}
+
+/* ============================================
+   FORMULAIRE
+   ============================================ */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  color: var(--color-gray-900);
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-light);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background-color: var(--color-gray-100);
+  cursor: not-allowed;
+}
+
+.form-group input::placeholder {
+  color: var(--color-gray-400);
+}
+
+/* ============================================
+   RÉCAPITULATIF DU PRIX
+   ============================================ */
+.price-summary {
+  background-color: var(--color-gray-50);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.price-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9375rem;
+  color: var(--color-gray-600);
+}
+
+.price-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--color-gray-200);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.price-summary-total span:last-child {
+  color: var(--color-success);
+  font-size: 1.5rem;
+}
+
+/* ============================================
+   MESSAGES
+   ============================================ */
+.message {
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.message-success {
+  background-color: var(--color-success-light);
+  color: var(--color-success-dark);
+}
+
+.message-success svg {
+  color: var(--color-success);
+}
+
+.message-error {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.message-error svg {
+  color: var(--color-danger);
+}
+
+/* ============================================
+   ACTIONS DU FORMULAIRE
+   ============================================ */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.form-actions button {
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+/* ============================================
+   SPINNER DANS LES BOUTONS
+   ============================================ */
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   LOADING (même style que Admin)
+   ============================================ */
+.booking-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: var(--color-gray-50);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--color-gray-200);
+  border-top-color: var(--color-success);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.booking-loading p {
+  color: var(--color-gray-600);
+  font-weight: 500;
+}
+
+/* ============================================
+   CARTE D'ERREUR
+   ============================================ */
+.error-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 3rem;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.error-card svg {
+  color: var(--color-danger);
+  margin-bottom: 1.5rem;
+}
+
+.error-card h2 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.error-card p {
+  margin: 0 0 2rem 0;
+  color: var(--color-gray-600);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-content {
+    padding: 1rem;
+  }
+
+  .trip-info-body,
+  .booking-form-body {
+    padding: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}

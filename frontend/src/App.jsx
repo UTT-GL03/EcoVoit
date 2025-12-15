@@ -1,73 +1,16 @@
 import "./App.css";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import SearchPage from "./pages/SearchPage";
 import TripPage from "./pages/TripPage";
 import BookingPage from "./pages/BookingPage";
 import UserPage from "./pages/UserPage";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [route, setRoute] = useState({
     path: window.location.pathname,
     params: new URLSearchParams(window.location.search),
   });
-
-  const COUCHDB_URL = "/api";
-  const COUCHDB_USER = "admin";
-  const COUCHDB_PASSWORD = "password";
-
-  const loadData = useCallback(async () => {
-    try {
-      const auth = btoa(`${COUCHDB_USER}:${COUCHDB_PASSWORD}`);
-      const headers = {
-        Authorization: `Basic ${auth}`,
-        "Content-Type": "application/json",
-      };
-
-      const usersResponse = await fetch(
-        `${COUCHDB_URL}/users/_all_docs?include_docs=true`,
-        { headers }
-      );
-      if (!usersResponse.ok)
-        throw new Error(`Users: HTTP ${usersResponse.status}`);
-      const usersJson = await usersResponse.json();
-
-      const tripsResponse = await fetch(
-        `${COUCHDB_URL}/trips/_all_docs?include_docs=true`,
-        { headers }
-      );
-      if (!tripsResponse.ok)
-        throw new Error(`Trips: HTTP ${tripsResponse.status}`);
-      const tripsJson = await tripsResponse.json();
-
-      const bookingsResponse = await fetch(
-        `${COUCHDB_URL}/bookings/_all_docs?include_docs=true`,
-        { headers }
-      );
-      if (!bookingsResponse.ok)
-        throw new Error(`Bookings: HTTP ${bookingsResponse.status}`);
-      const bookingsJson = await bookingsResponse.json();
-
-      setData({
-        users: usersJson.rows.map((row) => row.doc),
-        trips: tripsJson.rows.map((row) => row.doc),
-        bookings: bookingsJson.rows.map((row) => row.doc),
-      });
-    } catch (err) {
-      console.error("Erreur de chargement:", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
-  console.log("Data loaded:", data);
 
   useEffect(() => {
     const onPop = () =>
@@ -90,81 +33,39 @@ function App() {
 
   let page = null;
   if (route.path === "/" || route.path === "/search") {
-    page = <SearchPage data={data} navigate={navigate} />;
+    page = <SearchPage navigate={navigate} />;
   } else if (route.path === "/trip") {
-    page = <TripPage data={data} params={route.params} navigate={navigate} />;
+    page = <TripPage params={route.params} navigate={navigate} />;
   } else if (route.path === "/booking") {
-    page = (
-      <BookingPage data={data} params={route.params} navigate={navigate} />
-    );
+    page = <BookingPage params={route.params} navigate={navigate} />;
   } else if (route.path === "/user") {
-    page = <UserPage data={data} params={route.params} navigate={navigate} />;
+    page = <UserPage params={route.params} navigate={navigate} />;
+  } else if (route.path === "/admin") {
+    page = <AdminPage navigate={navigate} />;
   } else {
-    page = <SearchPage data={data} navigate={navigate} />;
+    page = <SearchPage navigate={navigate} />;
   }
 
   return (
     <div className={"main-container"}>
       <header className={"header"}>
-        <h1 className={"app-title"}>🚗 EcoVoit</h1>
-        <p className={"app-subtitle"}>Covoiturage écoresponsable</p>
-        <nav style={{ marginTop: 8 }}>
+        <div>
+          <h1 className={"app-title"}>🚗 EcoVoit</h1>
+          <p className={"app-subtitle"}>Covoiturage écoresponsable</p>
+        </div>
+        <nav style={{ display: "flex", gap: 8 }}>
           <button onClick={() => navigate("/search", "")}>Accueil</button>
           <button onClick={() => navigate("/search", "")}>Rechercher</button>
+          <button
+            onClick={() => navigate("/admin", "")}
+            style={{ background: "#6b7280" }}
+          >
+            Admin
+          </button>
         </nav>
       </header>
 
-      <div style={{ marginTop: 16 }}>
-        {loading ? (
-          <div
-            style={{ color: "#6b7280", textAlign: "center", padding: "20px" }}
-          >
-            ⏳ Chargement des données depuis CouchDB...
-          </div>
-        ) : error ? (
-          <div
-            style={{
-              color: "#ef4444",
-              backgroundColor: "#fee",
-              padding: "16px",
-              borderRadius: "8px",
-              border: "1px solid #ef4444",
-            }}
-          >
-            <strong>❌ Erreur de connexion:</strong> {error}
-            <p style={{ fontSize: "0.875rem", marginTop: 8, color: "#666" }}>
-              Vérifiez que :
-            </p>
-            <ul
-              style={{
-                fontSize: "0.875rem",
-                color: "#666",
-                marginLeft: "20px",
-              }}
-            >
-              <li>CouchDB est démarré (http://localhost:5984)</li>
-              <li>Les identifiants sont corrects (admin/password)</li>
-              <li>CORS est configuré (voir instructions)</li>
-              <li>Les bases users, trips, bookings existent</li>
-            </ul>
-          </div>
-        ) : (
-          <>
-            <div
-              style={{
-                fontSize: "0.875rem",
-                color: "#059669",
-                marginBottom: "16px",
-                textAlign: "center",
-              }}
-            >
-              ✅ {data.users.length} utilisateurs, {data.trips.length} trajets,{" "}
-              {data.bookings.length} réservations chargés
-            </div>
-            {page}
-          </>
-        )}
-      </div>
+      <div style={{ marginTop: 16 }}>{page}</div>
     </div>
   );
 }

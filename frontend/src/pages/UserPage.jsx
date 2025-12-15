@@ -1,7 +1,6 @@
 export default function UserPage({ data, params, navigate }) {
   const userId = params.get("user_id");
 
-  // CORRECTION: Utiliser _id
   const user = (data.users || []).find((u) => u._id === userId);
 
   if (!user) {
@@ -13,7 +12,6 @@ export default function UserPage({ data, params, navigate }) {
     );
   }
 
-  // CORRECTION: Trouver les trajets par conductorId
   const userTrips = (data.trips || []).filter((t) => t.conductorId === userId);
 
   return (
