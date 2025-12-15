@@ -1,185 +1,24 @@
-# Scénario EcoVoit - Parcours complet utilisateur
-name: Parcours complet de réservation EcoVoit
-url: http://localhost/
+# Scénario EcoVoit - Basé sur la structure réelle de l'app
+- name: Consultation de trajets EcoVoit
+  url: http://localhost/
+  actions:
+    - name: Attendre le chargement de la page
+      type: wait
+      duration: 3000
 
-actions:
-  # ============================================
-  # ÉTAPE 1 : PAGE D'ACCUEIL
-  # ============================================
-  - name: Attendre le chargement complet de la page d'accueil
-    type: wait
-    duration: 2000
+    - name: Cliquer sur le premier bouton Voir
+      type: click
+      element: ul li button
+      waitForSelector: h2
 
-  - name: Vérifier que la recherche est chargée
-    type: scroll
-    element: h2
+    - name: Consulter les détails du trajet
+      type: scroll
 
-  # ============================================
-  # ÉTAPE 2 : RECHERCHE DE TRAJETS
-  # ============================================
-  - name: Cliquer sur le champ ville de départ
-    type: click
-    element: input[placeholder="Ville de départ"]
+    - name: Attendre
+      type: wait
+      duration: 2000
 
-  - name: Saisir la ville de départ
-    type: fill
-    element: input[placeholder="Ville de départ"]
-    value: Paris
-
-  - name: Attendre après saisie départ
-    type: wait
-    duration: 500
-
-  - name: Cliquer sur le champ ville d'arrivée
-    type: click
-    element: input[placeholder="Ville d'arrivée"]
-
-  - name: Saisir la ville d'arrivée
-    type: fill
-    element: input[placeholder="Ville d'arrivée"]
-    value: Lyon
-
-  - name: Attendre le filtrage des résultats
-    type: wait
-    duration: 1000
-
-  - name: Scroller pour voir les résultats
-    type: scroll
-    element: h3
-
-  # ============================================
-  # ÉTAPE 3 : CONSULTATION D'UN TRAJET
-  # ============================================
-  - name: Attendre avant de cliquer sur un trajet
-    type: wait
-    duration: 1000
-
-  - name: Cliquer sur le bouton Voir du premier trajet
-    type: click
-    element: ul li button
-    waitForSelector: h2
-
-  - name: Attendre le chargement des détails du trajet
-    type: wait
-    duration: 1500
-
-  - name: Consulter les informations du trajet
-    type: scroll
-
-  - name: Lire les détails (conducteur, prix, places)
-    type: wait
-    duration: 2000
-
-  # ============================================
-  # ÉTAPE 4 : PASSAGE À LA RÉSERVATION
-  # ============================================
-  - name: Scroller vers le bouton Réserver
-    type: scroll
-    element: button
-
-  - name: Cliquer sur le bouton Réserver
-    type: click
-    element: button[type="button"]:last-child
-    waitForSelector: h2
-
-  - name: Attendre le chargement de la page de réservation
-    type: wait
-    duration: 2000
-
-  # ============================================
-  # ÉTAPE 5 : REMPLISSAGE DU FORMULAIRE
-  # ============================================
-  - name: Vérifier que le formulaire est chargé
-    type: scroll
-    element: form
-
-  - name: Cliquer sur le champ Nom
-    type: click
-    element: input[type="text"]
-
-  - name: Saisir le nom complet
-    type: fill
-    element: input[type="text"]
-    value: Jean Dupont
-
-  - name: Attendre après saisie nom
-    type: wait
-    duration: 500
-
-  - name: Cliquer sur le champ Email
-    type: click
-    element: input[type="email"]
-
-  - name: Saisir l'email
-    type: fill
-    element: input[type="email"]
-    value: jean.dupont@email.com
-
-  - name: Attendre après saisie email
-    type: wait
-    duration: 500
-
-  - name: Cliquer sur le champ Téléphone
-    type: click
-    element: input[type="tel"]
-
-  - name: Saisir le téléphone
-    type: fill
-    element: input[type="tel"]
-    value: 0612345678
-
-  - name: Attendre après saisie téléphone
-    type: wait
-    duration: 500
-
-  # ============================================
-  # ÉTAPE 6 : CONSULTATION DU RÉCAPITULATIF
-  # ============================================
-  - name: Scroller vers le récapitulatif du prix
-    type: scroll
-    element: .price-summary
-
-  - name: Lire le récapitulatif du prix
-    type: wait
-    duration: 1500
-
-  - name: Consulter l'impact carbone (si affiché)
-    type: scroll
-
-  - name: Attendre avant validation
-    type: wait
-    duration: 1000
-
-  # ============================================
-  # ÉTAPE 7 : VALIDATION DE LA RÉSERVATION
-  # ============================================
-  - name: Scroller vers le bouton de confirmation
-    type: scroll
-    element: button[type="submit"]
-
-  - name: Cliquer sur Confirmer la réservation
-    type: click
-    element: button[type="submit"]
-    waitForSelector: .message
-
-  - name: Attendre le traitement de la réservation
-    type: wait
-    duration: 3000
-
-  - name: Consulter le message de confirmation
-    type: scroll
-    element: .message
-
-  - name: Lire la confirmation complète
-    type: wait
-    duration: 2000
-
-  # ============================================
-  # ÉTAPE 8 : RETOUR À L'ACCUEIL
-  # ============================================
-  - name: Attendre la redirection automatique
-    type: wait
-    duration: 3000
-
-  - name: Vérifier le retour à la page d'accueil
-    type: scroll
+    - name: Retourner à l'accueil via navigation
+      type: click
+      element: nav button:first-child
+      waitForSelector: h3
