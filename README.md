@@ -447,3 +447,107 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 <br><br>
 
 <p>L’intégration de CouchDB a permis de centraliser et optimiser le traitement des données, réduisant ainsi la charge sur le navigateur et améliorant l’efficacité globale du système. Grâce à cette approche, la consommation énergétique et les ressources utilisées côté serveur restent très faibles, ce qui limite l’impact environnemental de la plateforme. Cependant, le navigateur reste le principal poste de consommation, notamment en raison de l’affichage et de la gestion des données. Cette nouvelle version représente donc une avancée significative vers une plateforme plus durable et scalable.</p>
+
+<h2>Version 2.0.1 : Nouvelles fonctionnalités</h2>
+
+<p>Afin d'améliorer l'expérience utilisateur, nous avons rajouté des fonctionnalités sur notre site web. Sur les détails d'un trajet, nous avons rajouté des informations sur l'impact environnemental du trajet, avec des comparaisons avec d'autres modes de transport (C02 economisé, comparaison avec train et voiture seul).<br>
+Nous avons également rajouté un Tableau de Bord administrateur avec des informations diverses (nombre d'utilisateurs, de trajets, de réservations, quantité de CO2 économisée, trajets disponibles, taux de réservation, nombre de réservation par trajet. Il y a également un lien vers la page de la base de données CouchDB, ainsi qu'un bouton d'actualisation des données.</p>
+<br>
+<p>Nous avons ensuite mesuré l'impact environnemental de cette nouvelle version afin de voir l'évolution. Voici les valeurs que nous avons obtenu: </p><br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>CPU (s)</th>
+      <th>Screen (s)</th>
+      <th>Total Time (s)</th>
+      <th>Memory (B)</th>
+      <th>Disk (B)</th>
+      <th>Network (B)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Navigateur</td>
+      <td>0.0817</td>
+      <td>17.7</td>
+      <td>18.8</td>
+      <td>1.26e+8</td>
+      <td>0.00</td>
+      <td>2.77e+5</td>
+    </tr>
+    <tr>
+      <td>Serveur Web</td>
+      <td>0.000330</td>
+      <td>0.00</td>
+      <td>18.4</td>
+      <td>5.56e+6</td>
+      <td>0.00</td>
+      <td>2.83e+5</td>
+    </tr>
+    <tr>
+      <td>Base de données</td>
+      <td>0.0376</td>
+      <td>0.00</td>
+      <td>18.4</td>
+      <td>8.91e+7</td>
+      <td>0.00</td>
+      <td>5.82e+3</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>CPU (Wh)</th>
+      <th>Memory (Wh)</th>
+      <th>Disk (Wh)</th>
+      <th>Network (Wh)</th>
+      <th>Screen (Wh)</th>
+      <th>Total (Wh)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Navigateur</td>
+      <td>0.0010</td>
+      <td>0.000048</td>
+      <td>0.0</td>
+      <td>0.0014</td>
+      <td>0.069</td>
+      <td>0.072</td>
+    </tr>
+    <tr>
+      <td>Serveur Web</td>
+      <td>0.0000058</td>
+      <td>0.0000029</td>
+      <td>0.0</td>
+      <td>0.0015</td>
+      <td>0.0</td>
+      <td>0.0015</td>
+    </tr>
+    <tr>
+      <td>Base de données</td>
+      <td>0.00066</td>
+      <td>0.000046</td>
+      <td>0.0</td>
+      <td>0.000030</td>
+      <td>0.0</td>
+      <td>0.00073</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<p>Comme on le voit, les nouvelles fonctionnalités ont un impact très limité. La consommation du Navigateur est inchangée, celle du Serveur Web baisse de 50%, et celle augmente de 300% (mais valeurs très faible donc insignifiantes). Il est donc raisonnable de les garder.</p>
+
+
+
+
+
