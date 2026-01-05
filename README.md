@@ -452,6 +452,26 @@ Cette exigence fonctionnelle bien que coûteuse du point de vue environnemental 
 
 <p>Afin d'améliorer l'expérience utilisateur, nous avons rajouté des fonctionnalités sur notre site web. Sur les détails d'un trajet, nous avons rajouté des informations sur l'impact environnemental du trajet, avec des comparaisons avec d'autres modes de transport (C02 economisé, comparaison avec train et voiture seul).<br>
 Nous avons également rajouté un Tableau de Bord administrateur avec des informations diverses (nombre d'utilisateurs, de trajets, de réservations, quantité de CO2 économisée, trajets disponibles, taux de réservation, nombre de réservation par trajet. Il y a également un lien vers la page de la base de données CouchDB, ainsi qu'un bouton d'actualisation des données.</p>
+
+<br><br>
+<figure>
+  <img src="images/details_ecolo.png" alt="Détails_trajets" width = 50% />
+  <figcaption>Détails d'un trajet avec comparaison avec les autres modes de transport</figcaption>
+</figure>
+<br><br>
+
+<figure>
+  <img src="images/tableau_admin.png" alt="tableau_admin" width = 50% />
+  <figcaption>Tableau administrateur</figcaption>
+</figure>
+<br><br>
+
+<figure>
+  <img src="images/lien_couch.png" alt="lien_bd" width = 50% />
+  <figcaption>Lien vers CouchDB et actualisation des données</figcaption>
+</figure>
+<br><br>
+
 <br>
 <p>Nous avons ensuite mesuré l'impact environnemental de cette nouvelle version afin de voir l'évolution. Voici les valeurs que nous avons obtenu: </p><br><br>
 
