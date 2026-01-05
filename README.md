@@ -567,6 +567,14 @@ Nous avons également rajouté un Tableau de Bord administrateur avec des inform
 
 <p>Comme on le voit, les nouvelles fonctionnalités ont un impact très limité. La consommation du Navigateur est inchangée, celle du Serveur Web baisse de 50%, et celle augmente de 300% (mais valeurs très faible donc insignifiantes). Il est donc raisonnable de les garder.</p>
 
+<h2>Conclusion</h2> 
+
+<p> Le projet <strong>EcoVoit</strong> avait pour objectif de concevoir une application de covoiturage en intégrant dès le départ les enjeux environnementaux, sociaux et techniques liés au numérique responsable. Tout au long du développement, nous avons cherché à démontrer qu’il est possible de proposer un service utile et fonctionnel tout en maîtrisant son impact écologique. </p> 
+<p> Les différentes mesures réalisées montrent que l’application atteint de très bons résultats en termes de performance environnementale, avec des scores EcoIndex élevés en conditions normales d’utilisation. Les comparaisons avec des plateformes existantes soulignent également que les services de covoiturage actuels disposent encore de marges d’amélioration, notamment sur l’optimisation des pages et la gestion des données. </p> 
+<p> L’étude du passage à l’échelle a mis en évidence un point clé : l’augmentation du volume de données peut rapidement dégrader les performances et l’empreinte environnementale si elle n’est pas maîtrisée. La migration vers une architecture basée sur une base de données filtrant les informations côté serveur s’est révélée être une solution efficace, permettant de limiter la charge côté navigateur et de rendre la plateforme plus durable et scalable. </p> 
+<p> L’ajout de nouvelles fonctionnalités, comme l’affichage de l’impact environnemental des trajets et le tableau de bord administrateur, montre qu’il est possible d’enrichir l’expérience utilisateur sans dégrader significativement la consommation énergétique. Ces fonctionnalités renforcent même la mission d’EcoVoit en sensibilisant les utilisateurs aux alternatives de transport et aux économies de CO₂ réalisées. </p> 
+<p> En conclusion, EcoVoit illustre l’importance d’intégrer les principes d’écoconception numérique à toutes les étapes d’un projet web. Au-delà de son rôle de plateforme de covoiturage, l’application se veut un outil de sensibilisation et un exemple de conception responsable, conciliant utilité sociale, performance technique et sobriété environnementale. </p>
+
 
 
 
