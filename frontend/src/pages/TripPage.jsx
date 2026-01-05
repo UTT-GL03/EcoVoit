@@ -87,14 +87,14 @@ export default function TripPage({ params, navigate }) {
       // 2. Vérifier les places disponibles (en temps réel)
       if (seats > currentTrip.nbPlacesVides) {
         setMessage(
-          `❌ Seulement ${currentTrip.nbPlacesVides} place(s) disponible(s)`
+          `Seulement ${currentTrip.nbPlacesVides} place(s) disponible(s)`
         );
         setBooking(false);
         return;
       }
 
       if (currentTrip.nbPlacesVides === 0) {
-        setMessage("❌ Ce trajet est maintenant complet");
+        setMessage("Ce trajet est maintenant complet");
         setBooking(false);
         return;
       }
@@ -164,7 +164,7 @@ export default function TripPage({ params, navigate }) {
 
       // 6. Succès !
       setMessage(
-        `✅ Réservation confirmée ! Référence: ${bookingResult.id.substring(
+        `Réservation confirmée ! Référence: ${bookingResult.id.substring(
           0,
           8
         )}`
@@ -175,8 +175,8 @@ export default function TripPage({ params, navigate }) {
         navigate("/search", "");
       }, 3000);
     } catch (error) {
-      console.error("❌ Erreur réservation:", error);
-      setMessage(`❌ Erreur: ${error.message}`);
+      console.error("Erreur réservation:", error);
+      setMessage(`Erreur: ${error.message}`);
     } finally {
       setBooking(false);
     }
@@ -193,7 +193,6 @@ export default function TripPage({ params, navigate }) {
           padding: 40,
         }}
       >
-        <div style={{ fontSize: "2rem" }}>⏳</div>
         <div style={{ marginTop: 16, color: "#6b7280" }}>
           Chargement du trajet...
         </div>
@@ -209,7 +208,7 @@ export default function TripPage({ params, navigate }) {
           className="card"
           style={{ background: "#fee2e2", border: "1px solid #ef4444" }}
         >
-          <h2 style={{ color: "#991b1b" }}>❌ Trajet non trouvé</h2>
+          <h2 style={{ color: "#991b1b" }}>Trajet non trouvé</h2>
           <p>ID recherché: {tripId}</p>
           <p style={{ color: "#6b7280" }}>{error}</p>
           <button onClick={() => navigate("/search", "")}>
@@ -233,20 +232,18 @@ export default function TripPage({ params, navigate }) {
 
         <div style={{ display: "grid", gap: 12 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>👤</span>
             <div>
               <strong>Conducteur:</strong>{" "}
               {user ? `${user.name} ${user.surname}` : trip.conductorId}
               {user && (
                 <div style={{ fontSize: "0.9rem", color: "#6b7280" }}>
-                  ⭐ {user.rating}/5 • {user.totalTrips} trajets
+                  {user.rating}/5 - {user.totalTrips} trajets
                 </div>
               )}
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>📅</span>
             <div>
               <strong>Départ:</strong>{" "}
               {new Date(trip.departureTime).toLocaleString("fr-FR", {
@@ -261,28 +258,24 @@ export default function TripPage({ params, navigate }) {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>📍</span>
             <div>
               <strong>Point de rencontre:</strong> {trip.meetingPoint}
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>🚗</span>
             <div>
               <strong>Véhicule:</strong> {trip.carModel}
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>💺</span>
             <div>
               <strong>Places disponibles:</strong> {trip.nbPlacesVides}
             </div>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>💰</span>
             <div>
               <strong>Prix:</strong>{" "}
               <span
@@ -299,7 +292,6 @@ export default function TripPage({ params, navigate }) {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: "1.2rem" }}>📊</span>
             <div>
               <strong>Statut:</strong>{" "}
               <span
@@ -342,7 +334,7 @@ export default function TripPage({ params, navigate }) {
 
       {/* Section Réservation */}
       <div className="card">
-        <h3>📝 Réserver ce trajet</h3>
+        <h3>Réserver ce trajet</h3>
 
         {!showReservationForm ? (
           <div style={{ textAlign: "center", padding: 20 }}>
@@ -497,8 +489,8 @@ export default function TripPage({ params, navigate }) {
                 style={{
                   padding: 16,
                   borderRadius: 8,
-                  background: message.includes("✅") ? "#d1fae5" : "#fee2e2",
-                  color: message.includes("✅") ? "#065f46" : "#991b1b",
+                  background: message.includes("confirmée") ? "#d1fae5" : "#fee2e2",
+                  color: message.includes("confirmée") ? "#065f46" : "#991b1b",
                   fontWeight: 600,
                   textAlign: "center",
                 }}
@@ -549,8 +541,8 @@ export default function TripPage({ params, navigate }) {
                 }}
               >
                 {booking
-                  ? "⏳ Réservation en cours..."
-                  : "✅ Confirmer la réservation"}
+                  ? "Réservation en cours..."
+                  : "Confirmer la réservation"}
               </button>
             </div>
           </form>
@@ -571,7 +563,7 @@ export default function TripPage({ params, navigate }) {
             fontSize: "1rem",
           }}
         >
-          ← Retour à la recherche
+          Retour à la recherche
         </button>
       </div>
     </div>
